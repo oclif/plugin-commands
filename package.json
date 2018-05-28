@@ -7,11 +7,12 @@
   "dependencies": {
     "@oclif/command": "^1",
     "@oclif/config": "^1",
+    "cli-ux": "^4.4.0",
     "tslib": "^1"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
-    "@oclif/plugin-help": "^1",
+    "@oclif/plugin-help": "^2.0.0",
     "@oclif/test": "^1",
     "@oclif/tslint": "^1",
     "@types/chai": "^4",
