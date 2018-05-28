@@ -1,5 +1,6 @@
 import {Command, flags} from '@oclif/command'
 import ux from 'cli-ux'
+import * as _ from 'lodash'
 
 export default class Commands extends Command {
   static description = 'list all the commands'
@@ -12,6 +13,7 @@ export default class Commands extends Command {
   async run() {
     const {flags} = this.parse(Commands)
     const commands = this.config.commands
+    _.sortBy(commands, 'id')
     if (flags.json) {
       ux.styledJSON(commands)
     } else {
