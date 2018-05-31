@@ -1,0 +1,18 @@
+<a name="1.0.0"></a>
+# 1.0.0 (2018-05-31)
+
+
+### Bug Fixes
+
+* updated deps ([ef81977](https://github.com/oclif/plugin-commands/commit/ef81977))
+
+
+### Features
+
+* init ([03864cc](https://github.com/oclif/plugin-commands/commit/03864cc))
+* sort commands by id ([9cb157a](https://github.com/oclif/plugin-commands/commit/9cb157a))
+
+
+### BREAKING CHANGES
+
+* v1

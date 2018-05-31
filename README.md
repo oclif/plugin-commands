@@ -22,7 +22,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (-v|--version|version)
-@oclif/plugin-commands/0.0.0 darwin-x64 node-v10.2.1
+@oclif/plugin-commands/1.0.0 linux-x64 node-v10.2.1
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -31,25 +31,20 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`oclif-example hello [FILE]`](#oclif-example-hello-file)
+* [`oclif-example commands`](#oclif-example-commands)
 
-## `oclif-example hello [FILE]`
+## `oclif-example commands`
 
-describe the command here
+list all the commands
 
 ```
 USAGE
-  $ oclif-example hello [FILE]
+  $ oclif-example commands
 
 OPTIONS
-  -f, --force
-  -h, --help       show CLI help
-  -n, --name=name  name to print
-
-EXAMPLE
-  $ oclif-example hello
-  hello world from ./src/hello.ts!
+  -h, --help  show CLI help
+  -j, --json  output in json format
 ```
 
-_See code: [src/commands/hello.ts](https://github.com/oclif/plugin-commands/blob/v0.0.0/src/commands/hello.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v1.0.0/src/commands/commands.ts)_
 <!-- commandsstop -->
