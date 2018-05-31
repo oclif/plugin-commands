@@ -22,7 +22,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (-v|--version|version)
-@oclif/plugin-commands/1.0.0 linux-x64 node-v10.2.1
+@oclif/plugin-commands/1.1.0 linux-x64 node-v10.2.1
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -44,7 +44,8 @@ USAGE
 OPTIONS
   -h, --help  show CLI help
   -j, --json  output in json format
+  --hidden    also show hidden commands
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v1.0.0/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v1.1.0/src/commands/commands.ts)_
 <!-- commandsstop -->

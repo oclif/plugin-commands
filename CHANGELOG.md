@@ -1,3 +1,11 @@
+<a name="1.1.0"></a>
+# [1.1.0](https://github.com/oclif/plugin-commands/compare/v1.0.0...v1.1.0) (2018-05-31)
+
+
+### Features
+
+* add --hidden flag ([e6b9424](https://github.com/oclif/plugin-commands/commit/e6b9424))
+
 <a name="1.0.0"></a>
 # 1.0.0 (2018-05-31)
 
