@@ -8,12 +8,16 @@ export default class Commands extends Command {
   static flags = {
     help: flags.help({char: 'h'}),
     json: flags.boolean({char: 'j', description: 'output in json format'}),
+    hidden: flags.boolean({description: 'also show hidden commands'}),
   }
 
   async run() {
     const {flags} = this.parse(Commands)
-    const commands = this.config.commands
-    _.sortBy(commands, 'id')
+    let commands = this.config.commands
+    if (!flags.hidden) {
+      commands = commands.filter(c => !c.hidden)
+    }
+    commands = _.sortBy(commands, 'id')
     if (flags.json) {
       ux.styledJSON(commands)
     } else {
