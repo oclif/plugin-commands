@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/oclif/plugin-commands/compare/v1.1.3...v1.2.0) (2018-08-17)
+
+
+### Features
+
+* typescript 3 ([8267ff5](https://github.com/oclif/plugin-commands/commit/8267ff5))
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/oclif/plugin-commands/compare/v1.1.0...v1.1.1) (2018-06-01)
 
