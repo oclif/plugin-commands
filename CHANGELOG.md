@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/oclif/plugin-commands/compare/v1.2.0...v1.2.1) (2018-09-14)
+
+
+### Bug Fixes
+
+* updated deps ([adf0726](https://github.com/oclif/plugin-commands/commit/adf0726))
+
 # [1.2.0](https://github.com/oclif/plugin-commands/compare/v1.1.3...v1.2.0) (2018-08-17)
 
 
