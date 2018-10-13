@@ -9,7 +9,6 @@ plugin to show the list of all the commands
 [![Codecov](https://codecov.io/gh/oclif/plugin-commands/branch/master/graph/badge.svg)](https://codecov.io/gh/oclif/plugin-commands)
 [![Downloads/week](https://img.shields.io/npm/dw/@oclif/plugin-commands.svg)](https://npmjs.org/package/@oclif/plugin-commands)
 [![License](https://img.shields.io/npm/l/@oclif/plugin-commands.svg)](https://github.com/oclif/plugin-commands/blob/master/package.json) 
-[![Greenkeeper badge](https://badges.greenkeeper.io/oclif/plugin-commands.svg)](https://greenkeeper.io/)
 
 <!-- toc -->
 * [Usage](#usage)
