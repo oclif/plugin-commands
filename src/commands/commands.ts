@@ -21,7 +21,7 @@ export default class Commands extends Command {
     if (flags.json) {
       ux.styledJSON(commands)
     } else {
-      for (let c of commands) {
+      for (const c of commands) {
         this.log(c.id)
       }
     }
