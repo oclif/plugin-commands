@@ -51,7 +51,7 @@
   },
   "repository": "oclif/plugin-commands",
   "scripts": {
-    "lint": "eslint . --ext .ts --config .eslintrc",
+    "lint": "eslint ./src ./test --ext .ts --config .eslintrc",
     "pretest": "tsc -p test --noEmit",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",

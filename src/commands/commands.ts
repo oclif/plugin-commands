@@ -37,7 +37,8 @@ export default class Commands extends Command {
     }
 
     if (flags.command) {
-      commands = _.filter(commands, command => new RegExp(flags.command || '').test(command.id))
+      // We know it is a string if it exists
+      commands = _.filter(commands, command => new RegExp(flags.command as string).test(command.id))
     }
 
     if (flags.json) {
