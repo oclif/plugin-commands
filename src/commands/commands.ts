@@ -1,6 +1,7 @@
 import {Command, flags} from '@oclif/command'
-import ux from 'cli-ux'
+import {ux} from 'cli-ux'
 import * as _ from 'lodash'
+import {EOL} from 'os'
 
 type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
@@ -14,9 +15,7 @@ export default class Commands extends Command {
       description: 'include extended command information; must be used with --json',
       dependsOn: ['json'],
     }),
-    topic: flags.string({description: 'filter on topic'}),
-    plugin: flags.string({description: 'filter on plugin'}),
-    command: flags.string({description: 'filter on command name with a regular expression'}),
+    ...ux.table.flags(),
   }
 
   async run() {
@@ -26,20 +25,11 @@ export default class Commands extends Command {
       commands = commands.filter(c => !c.hidden)
     }
 
-    commands = _.sortBy(commands, 'id')
-
-    if (flags.topic) {
-      commands = _.filter(commands, command => command.id.startsWith(`${flags.topic}:`))
-    }
-
-    if (flags.plugin) {
-      commands = _.filter(commands, command => command.pluginName === flags.plugin)
-    }
-
-    if (flags.command) {
-      // We know it is a string if it exists
-      commands = _.filter(commands, command => new RegExp(flags.command as string).test(command.id))
-    }
+    commands = _.sortBy(commands, 'id').map(command => {
+      // Template supported fields.
+      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command})) || undefined
+      return command
+    })
 
     if (flags.json) {
       if (flags.verbose) {
@@ -63,9 +53,34 @@ export default class Commands extends Command {
         ux.styledJSON(commands)
       }
     } else {
-      for (const c of commands) {
-        this.log(c.id)
-      }
+      ux.table(commands.map(command => {
+        // Message some fields so it looks good in the table
+        command.description = (command.description || '').split(EOL)[0]
+        command.hidden = Boolean(command.hidden)
+        command.usage = (command.usage || '')
+        return command
+      }), {
+        id: {
+          header: 'Command',
+        },
+        description: {},
+        usage: {
+          extended: true,
+        },
+        pluginName: {
+          extended: true,
+          header: 'Plugin',
+        },
+        type: {
+          extended: true,
+        },
+        hidden: {
+          extended: true,
+        },
+      }, {
+        printLine: this.log,
+        ...flags, // parsed flags
+      })
     }
   }
 

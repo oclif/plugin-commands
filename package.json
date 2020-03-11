@@ -5,9 +5,9 @@
   "author": "Jeff Dickey @jdxcode",
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
-    "@oclif/command": "^1.5.4",
-    "@oclif/config": "^1.8.7",
-    "cli-ux": "^4.9.0",
+    "@oclif/command": "^1.5.19",
+    "@oclif/config": "^1.14.0",
+    "cli-ux": "^5.4.5",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
