@@ -7,7 +7,7 @@ type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
   static description = 'list all the commands'
 
-  static flags = {
+  static flags: flags.Input<any> = {
     help: flags.help({char: 'h'}),
     json: flags.boolean({char: 'j', description: 'show detailed command information in json format'}),
     hidden: flags.boolean({description: 'show hidden commands'}),
@@ -25,9 +25,11 @@ export default class Commands extends Command {
       commands = commands.filter(c => !c.hidden)
     }
 
+    const config = this.config
     commands = _.sortBy(commands, 'id').map(command => {
       // Template supported fields.
-      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command})) || undefined
+      command.description = (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined
+      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined
       return command
     })
 
