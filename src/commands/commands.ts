@@ -9,12 +9,8 @@ export default class Commands extends Command {
 
   static flags: flags.Input<any> = {
     help: flags.help({char: 'h'}),
-    json: flags.boolean({char: 'j', description: 'show detailed command information in json format'}),
+    json: flags.boolean({char: 'j', description: 'display unfiltered api data in json format'}),
     hidden: flags.boolean({description: 'show hidden commands'}),
-    verbose: flags.boolean({
-      description: 'include extended command information; must be used with --json',
-      dependsOn: ['json'],
-    }),
     ...ux.table.flags(),
   }
 
@@ -34,26 +30,22 @@ export default class Commands extends Command {
     })
 
     if (flags.json) {
-      if (flags.verbose) {
-        ux.styledJSON(commands.map(cmd => {
-          let commandClass = cmd.load()
-          const obj = Object.assign({}, cmd, commandClass)
+      ux.styledJSON(commands.map(cmd => {
+        let commandClass = cmd.load()
+        const obj = Object.assign({}, cmd, commandClass)
 
-          // Load all properties on all extending classes.
-          while (commandClass !== undefined) {
-            commandClass = Object.getPrototypeOf(commandClass) || undefined
-            Object.assign(obj, commandClass)
-          }
+        // Load all properties on all extending classes.
+        while (commandClass !== undefined) {
+          commandClass = Object.getPrototypeOf(commandClass) || undefined
+          Object.assign(obj, commandClass)
+        }
 
-          // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
-          delete obj.plugin
+        // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
+        delete obj.plugin
 
-          // If Command classes have circular references, don't break the commands command.
-          return this.removeCycles(obj)
-        }))
-      } else {
-        ux.styledJSON(commands)
-      }
+        // If Command classes have circular references, don't break the commands command.
+        return this.removeCycles(obj)
+      }))
     } else {
       ux.table(commands.map(command => {
         // Message some fields so it looks good in the table

@@ -144,8 +144,8 @@ describe('commands', () => {
   test
   .stub(Commands.prototype, 'getCommands', () => commandList)
   .stdout()
-  .command(['commands', '--verbose', '--json'])
-  .it('runs commands --verbose --json', (ctx: { stdout: string }) => {
+  .command(['commands', '--json'])
+  .it('runs commands --json', (ctx: { stdout: string }) => {
     const commands = JSON.parse(ctx.stdout)
     expect(commands[0].id).to.equal('anothertopic:subtopic:command')
     expect(commands[0].testCustomProperty).to.equal('test')
