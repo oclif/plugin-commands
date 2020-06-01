@@ -21,7 +21,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (-v|--version|version)
-@oclif/plugin-commands/1.2.3 darwin-x64 node-v10.2.1
+@oclif/plugin-commands/1.3.0 darwin-x64 node-v12.16.1
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -41,10 +41,18 @@ USAGE
   $ oclif-example commands
 
 OPTIONS
-  -h, --help  show CLI help
-  -j, --json  output in json format
-  --hidden    also show hidden commands
+  -h, --help              show CLI help
+  -j, --json              display unfiltered api data in json format
+  -x, --extended          show extra columns
+  --columns=columns       only show provided columns (comma-separated)
+  --csv                   output is csv format [alias: --output=csv]
+  --filter=filter         filter property by partial string matching, ex: name=foo
+  --hidden                show hidden commands
+  --no-header             hide table header from output
+  --no-truncate           do not truncate output to fit screen
+  --output=csv|json|yaml  output in a more machine friendly format
+  --sort=sort             property to sort by (prepend '-' for descending)
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v1.2.3/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v1.3.0/src/commands/commands.ts)_
 <!-- commandsstop -->
