@@ -7,7 +7,7 @@
   "dependencies": {
     "@oclif/command": "^1.5.4",
     "@oclif/config": "^1.8.7",
-    "cli-ux": "^4.9.0",
+    "cli-ux": "^5.4.5",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
@@ -51,7 +51,7 @@
   },
   "repository": "oclif/plugin-commands",
   "scripts": {
-    "lint": "eslint . --ext .ts --config .eslintrc",
+    "lint": "eslint ./src ./test --ext .ts --config .eslintrc",
     "pretest": "tsc -p test --noEmit",
     "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
