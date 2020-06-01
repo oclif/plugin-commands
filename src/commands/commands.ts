@@ -48,7 +48,7 @@ export default class Commands extends Command {
       }))
     } else {
       ux.table(commands.map(command => {
-        // Message some fields so it looks good in the table
+        // Massage some fields so it looks good in the table
         command.description = (command.description || '').split(EOL)[0]
         command.hidden = Boolean(command.hidden)
         command.usage = (command.usage || '')
@@ -65,8 +65,9 @@ export default class Commands extends Command {
           extended: true,
           header: 'Plugin',
         },
-        type: {
+        pluginType: {
           extended: true,
+          header: 'Type',
         },
         hidden: {
           extended: true,
