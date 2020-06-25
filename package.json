@@ -51,12 +51,13 @@
   },
   "repository": "oclif/plugin-commands",
   "scripts": {
-    "lint": "eslint ./src ./test --ext .ts --config .eslintrc",
-    "pretest": "tsc -p test --noEmit",
-    "test": "nyc mocha --forbid-only \"test/**/*.test.ts\"",
+    "lint": "eslint . --ext .ts --config .eslintrc",
+    "pretest": "yarn build --noEmit && tsc -p test --noEmit",
+    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
     "prepack": "rm -rf lib && tsc && oclif-dev manifest && oclif-dev readme",
     "postpack": "rm -f oclif.manifest.json",
-    "version": "oclif-dev readme && git add README.md"
+    "version": "oclif-dev readme && git add README.md",
+    "build": "rm -rf lib && tsc"
   }
 }
