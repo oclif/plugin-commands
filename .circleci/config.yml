@@ -9,20 +9,14 @@ jobs:
       - checkout
       - restore_cache: &restore_cache
           keys:
-            - v1-npm-{{checksum ".circleci/config.yml"}}-{{ checksum "yarn.lock"}}
+            - v1-npm-{{checksum ".circleci/config.yml"}}-{{checksum "yarn.lock"}}
             - v1-npm-{{checksum ".circleci/config.yml"}}
       - run:
           name: Install dependencies
           command: yarn
-      - run: ./bin/run --help
       - run:
-          name: Testing
+          name: Run tests
           command: yarn test
-#       - run:
-#           name: Submitting code coverage to codecov
-#           command: |
-#             ./node_modules/.bin/nyc report --reporter text-lcov > coverage.lcov
-#             curl -s https://codecov.io/bash | bash
   node-12:
     <<: *test
     docker:
@@ -38,12 +32,12 @@ jobs:
       - checkout
       - restore_cache: *restore_cache
       - run:
-          name: Install dependencies
+          name: Install release dependencies
           command: |
-            yarn global add @oclif/semantic-release@3 semantic-release@15
+            yarn global add @oclif/semantic-release@3 semantic-release@17
             yarn --frozen-lockfile
       - run:
-          name: Cutting release
+          name: Cut release
           command: |
             export PATH=/usr/local/share/.config/yarn/global/node_modules/.bin:$PATH
             semantic-release -e @oclif/semantic-release
@@ -56,7 +50,7 @@ jobs:
 
 workflows:
   version: 2
-  "@oclif/plugin-commands":
+  "@oclif/plugin-foo":
     jobs:
       - node-latest
       - node-12
