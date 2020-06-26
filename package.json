@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1.19.1",
-    "@oclif/plugin-help": "^2.1.2",
+    "@oclif/plugin-help": "^3.1.0",
     "@oclif/test": "^1.2.1",
     "@types/chai": "^4.1.6",
     "@types/lodash": "^4.14.117",
