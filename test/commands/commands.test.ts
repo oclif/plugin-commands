@@ -1,5 +1,5 @@
 import {expect, test} from '@oclif/test'
-import {Command} from '@oclif/command'
+import {Command} from '@oclif/core'
 import Commands from '../../src/commands/commands'
 
 abstract class TestCommand extends Command {

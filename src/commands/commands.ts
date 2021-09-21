@@ -1,4 +1,4 @@
-import {Command, flags} from '@oclif/command'
+import {Command, Flags, Interfaces} from '@oclif/core'
 import {ux} from 'cli-ux'
 import * as _ from 'lodash'
 import {EOL} from 'os'
@@ -7,15 +7,16 @@ type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
   static description = 'list all the commands'
 
-  static flags: flags.Input<any> = {
-    help: flags.help({char: 'h'}),
-    json: flags.boolean({char: 'j', description: 'display unfiltered api data in json format'}),
-    hidden: flags.boolean({description: 'show hidden commands'}),
+  // to-do: update this type when cli-ux is on core
+  static flags: any = {
+    help: Flags.help({char: 'h'}),
+    json: Flags.boolean({char: 'j', description: 'display unfiltered api data in json format'}),
+    hidden: Flags.boolean({description: 'show hidden commands'}),
     ...ux.table.flags(),
   }
 
   async run() {
-    const {flags} = this.parse(Commands)
+    const {flags} = await this.parse(Commands)
     let commands = this.getCommands()
     if (!flags.hidden) {
       commands = commands.filter(c => !c.hidden)
@@ -30,9 +31,9 @@ export default class Commands extends Command {
     })
 
     if (flags.json) {
-      ux.styledJSON(commands.map(cmd => {
+      ux.styledJSON(commands.map(async cmd => {
         let commandClass = cmd.load()
-        const obj = Object.assign({}, cmd, commandClass)
+        const obj = await Object.assign({}, cmd, commandClass)
 
         // Load all properties on all extending classes.
         while (commandClass !== undefined) {
