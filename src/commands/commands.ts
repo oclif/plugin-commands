@@ -1,4 +1,4 @@
-import {Command, Flags, Interfaces} from '@oclif/core'
+import {Command, Flags} from '@oclif/core'
 import {ux} from 'cli-ux'
 import * as _ from 'lodash'
 import {EOL} from 'os'
@@ -31,9 +31,9 @@ export default class Commands extends Command {
     })
 
     if (flags.json) {
-      ux.styledJSON(commands.map(async cmd => {
-        let commandClass = cmd.load()
-        const obj = await Object.assign({}, cmd, commandClass)
+      ux.styledJSON(await Promise.all(commands.map(async cmd => {
+        let commandClass = await cmd.load()
+        const obj = {...cmd, ...commandClass}
 
         // Load all properties on all extending classes.
         while (commandClass !== undefined) {
@@ -46,7 +46,7 @@ export default class Commands extends Command {
 
         // If Command classes have circular references, don't break the commands command.
         return this.removeCycles(obj)
-      }))
+      })))
     } else {
       ux.table(commands.map(command => {
         // Massage some fields so it looks good in the table
@@ -74,7 +74,8 @@ export default class Commands extends Command {
           extended: true,
         },
       }, {
-        printLine: this.log,
+        // to-do: investigate this oclif/core error when printLine is enabled
+        // printLine: this.log,
         ...flags, // parsed flags
       })
     }
