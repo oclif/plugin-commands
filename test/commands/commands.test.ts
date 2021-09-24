@@ -1,5 +1,5 @@
 import {expect, test} from '@oclif/test'
-import {Command} from '@oclif/command'
+import {Command} from '@oclif/core'
 import Commands from '../../src/commands/commands'
 
 abstract class TestCommand extends Command {
@@ -48,9 +48,10 @@ describe('commands', () => {
   .command(['commands'])
   .it('runs commands', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command  Description                    \n' +
-      'commands list all the commands          \n' +
-      'help     display help for oclif-example \n',
+      ' Command  Description                    \n' +
+      ' ──────── ────────────────────────────── \n' +
+      ' commands list all the commands          \n' +
+      ' help     display help for oclif-example \n',
     )
   })
 
@@ -67,10 +68,11 @@ describe('commands', () => {
   .command(['commands', '--hidden'])
   .it('runs commands --hidden', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                       Description                     \n' +
-      'anothertopic:subtopic:command another super good test command \n' +
-      'hidden                                                        \n' +
-      'topic:subtopic:command        super good test command         \n',
+      ' Command                       Description                     \n' +
+      ' ───────────────────────────── ─────────────────────────────── \n' +
+      ' anothertopic:subtopic:command another super good test command \n' +
+      ' hidden                                                        \n' +
+      ' topic:subtopic:command        super good test command         \n',
     )
   })
 
@@ -80,8 +82,9 @@ describe('commands', () => {
   .command(['commands', '--filter=Command=^topic'])
   .it('runs commands --filter="Command=^topic"', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                Description             \n' +
-      'topic:subtopic:command super good test command \n',
+      ' Command                Description             \n' +
+      ' ────────────────────── ─────────────────────── \n' +
+      ' topic:subtopic:command super good test command \n',
     )
   })
 
@@ -91,8 +94,9 @@ describe('commands', () => {
   .command(['commands', '--filter=Plugin=anothertest'])
   .it('runs commands --filter="Plugin=anothertest"', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                       Description                     \n' +
-      'anothertopic:subtopic:command another super good test command \n',
+      ' Command                       Description                     \n' +
+      ' ───────────────────────────── ─────────────────────────────── \n' +
+      ' anothertopic:subtopic:command another super good test command \n',
     )
   })
 
@@ -102,8 +106,9 @@ describe('commands', () => {
   .command(['commands', '--filter=Command=anothertopic:subtopic:command'])
   .it('runs commands --filter="Command=anothertopic:subtopic:command"', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                       Description                     \n' +
-      'anothertopic:subtopic:command another super good test command \n',
+      ' Command                       Description                     \n' +
+      ' ───────────────────────────── ─────────────────────────────── \n' +
+      ' anothertopic:subtopic:command another super good test command \n',
     )
   })
 
@@ -113,8 +118,8 @@ describe('commands', () => {
   .command(['commands', '--columns=Command', '--no-header'])
   .it('runs commands --filter=Command=', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'anothertopic:subtopic:command \n' +
-      'topic:subtopic:command        \n',
+      ' anothertopic:subtopic:command \n' +
+      ' topic:subtopic:command        \n',
     )
   })
 
@@ -124,9 +129,10 @@ describe('commands', () => {
   .command(['commands', '--filter=Command=subtopic:command'])
   .it('runs commands --filter"=Command=subtopic:command"', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                       Description                     \n' +
-      'anothertopic:subtopic:command another super good test command \n' +
-      'topic:subtopic:command        super good test command         \n',
+      ' Command                       Description                     \n' +
+      ' ───────────────────────────── ─────────────────────────────── \n' +
+      ' anothertopic:subtopic:command another super good test command \n' +
+      ' topic:subtopic:command        super good test command         \n',
     )
   })
 
@@ -136,8 +142,9 @@ describe('commands', () => {
   .command(['commands', '--filter=Command=^topic:subtopic:command'])
   .it('runs commands --filter"=Command=^topic:subtopic:command"', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      'Command                Description             \n' +
-      'topic:subtopic:command super good test command \n',
+      ' Command                Description             \n' +
+      ' ────────────────────── ─────────────────────── \n' +
+      ' topic:subtopic:command super good test command \n',
     )
   })
 
