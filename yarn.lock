@@ -356,7 +356,7 @@
     chalk "^2.4.2"
     tslib "^1.9.3"
 
-"@oclif/plugin-help@^3", "@oclif/plugin-help@^3.1.0":
+"@oclif/plugin-help@^3":
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-3.2.2.tgz#063ee08cee556573a5198fbdfdaa32796deba0ed"
   integrity sha512-SPZ8U8PBYK0n4srFjCLedk0jWU4QlxgEYLCXIBShJgOwPhTTQknkUlsEwaMIevvCU4iCQZhfMX+D8Pz5GZjFgA==
@@ -371,6 +371,13 @@
     strip-ansi "^6.0.0"
     widest-line "^3.1.0"
     wrap-ansi "^4.0.0"
+
+"@oclif/plugin-help@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@oclif/plugin-help/-/plugin-help-5.1.0.tgz#002816410d41c8fb50157626adb6fc1889eaed89"
+  integrity sha512-PGbgC32OLFqciUSAjNxOWUMob/Yz5k6AwulS4X924WM6/pARQz91lqTBj4WWxNFoOSS1eT+CtB1nPmypCQXebQ==
+  dependencies:
+    "@oclif/core" "^0.5.39"
 
 "@oclif/plugin-not-found@^1.2.2":
   version "1.2.4"
