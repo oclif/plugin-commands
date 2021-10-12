@@ -1,4 +1,4 @@
-import {Command, Flags} from '@oclif/core'
+import {Command, Flags, toConfiguredId} from '@oclif/core'
 import {ux} from 'cli-ux'
 import * as _ from 'lodash'
 import {EOL} from 'os'
@@ -26,7 +26,9 @@ export default class Commands extends Command {
     commands = _.sortBy(commands, 'id').map(command => {
       // Template supported fields.
       command.description = (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined
+      command.summary = (typeof command.summary === 'string' && _.template(command.summary)({command, config})) || undefined
       command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined
+      command.id = toConfiguredId(command.id, this.config)
       return command
     })
 
@@ -51,6 +53,7 @@ export default class Commands extends Command {
       ux.table(commands.map(command => {
         // Massage some fields so it looks good in the table
         command.description = (command.description || '').split(EOL)[0]
+        command.summary = (command.summary || (command.description || '').split(EOL)[0])
         command.hidden = Boolean(command.hidden)
         command.usage = (command.usage || '')
         return command
@@ -58,7 +61,10 @@ export default class Commands extends Command {
         id: {
           header: 'Command',
         },
-        description: {},
+        summary: {},
+        description: {
+          extended: true,
+        },
         usage: {
           extended: true,
         },
