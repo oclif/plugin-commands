@@ -26,6 +26,7 @@
     "nock": "^13.0.0",
     "nyc": "^15.1.0",
     "oclif": "^2.0.0-main.8",
+    "shx": "^0.3.3",
     "ts-node": "^9.1.1",
     "tslib": "^2.0.0",
     "typescript": "4.4.3"
@@ -56,9 +57,9 @@
     "pretest": "yarn build --noEmit && tsc -p test --noEmit",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
-    "prepack": "rm -rf lib && tsc && oclif manifest . && oclif readme",
-    "postpack": "rm -f oclif.manifest.json",
+    "prepack": "shx rm -rf lib && tsc && oclif manifest . && oclif readme",
+    "postpack": "shx rm -f oclif.manifest.json",
     "version": "oclif readme && git add README.md",
-    "build": "rm -rf lib && tsc"
+    "build": "shx rm -rf lib && tsc"
   }
 }
