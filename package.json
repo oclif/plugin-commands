@@ -54,7 +54,7 @@
   "repository": "oclif/plugin-commands",
   "scripts": {
     "lint": "eslint . --ext .ts --config .eslintrc",
-    "pretest": "yarn build --noEmit && tsc -p test --noEmit",
+    "pretest": "yarn build && tsc -p test --noEmit",
     "test": "mocha --forbid-only \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
     "prepack": "shx rm -rf lib && tsc && oclif manifest . && oclif readme",
