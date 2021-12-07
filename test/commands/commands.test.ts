@@ -48,10 +48,10 @@ describe('commands', () => {
   .command(['commands'])
   .it('runs commands', (ctx: { stdout: any }) => {
     expect(ctx.stdout).to.equal(
-      ' Command  Summary                        \n' +
-      ' ──────── ────────────────────────────── \n' +
-      ' commands list all the commands          \n' +
-      ' help     display help for oclif-example \n',
+      ' Command  Summary                         \n' +
+            ' ──────── ─────────────────────────────── \n' +
+            ' commands list all the commands           \n' +
+            ' help     Display help for oclif-example. \n',
     )
   })
 

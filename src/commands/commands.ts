@@ -56,7 +56,7 @@ export default class Commands extends Command {
         command.summary = (command.summary || (command.description || '').split(EOL)[0])
         command.hidden = Boolean(command.hidden)
         command.usage = (command.usage || '')
-        return command
+        return command as unknown as Record<string, unknown>
       }), {
         id: {
           header: 'Command',
