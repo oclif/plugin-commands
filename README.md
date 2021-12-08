@@ -4,10 +4,10 @@
 plugin to show the list of all the commands
 
 [![Version](https://img.shields.io/npm/v/@oclif/plugin-commands.svg)](https://npmjs.org/package/@oclif/plugin-commands)
-[![CircleCI](https://circleci.com/gh/oclif/plugin-commands/tree/master.svg?style=shield)](https://circleci.com/gh/oclif/plugin-commands/tree/master)
-[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/oclif/plugin-commands?branch=master&svg=true)](https://ci.appveyor.com/project/oclif/plugin-commands/branch/master)
+[![CircleCI](https://circleci.com/gh/oclif/plugin-commands/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/plugin-commands/tree/main)
+[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/oclif/plugin-commands?branch=main&svg=true)](https://ci.appveyor.com/project/oclif/plugin-commands/branch/main)
 [![Downloads/week](https://img.shields.io/npm/dw/@oclif/plugin-commands.svg)](https://npmjs.org/package/@oclif/plugin-commands)
-[![License](https://img.shields.io/npm/l/@oclif/plugin-commands.svg)](https://github.com/oclif/plugin-commands/blob/master/package.json) 
+[![License](https://img.shields.io/npm/l/@oclif/plugin-commands.svg)](https://github.com/oclif/plugin-commands/blob/main/package.json)
 
 <!-- toc -->
 * [Usage](#usage)
@@ -29,7 +29,10 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-* [`oclif-example commands`](#oclif-example-commands)
+- [@oclif/plugin-commands](#oclifplugin-commands)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`oclif-example commands`](#oclif-example-commands)
 
 ## `oclif-example commands`
 
