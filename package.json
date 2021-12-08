@@ -2,7 +2,7 @@
   "name": "@oclif/plugin-commands",
   "description": "plugin to show the list of all the commands",
   "version": "2.0.0",
-  "author": "Jeff Dickey @jdxcode",
+  "author": "Salesforce",
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
     "@oclif/core": "^1.0.8",
