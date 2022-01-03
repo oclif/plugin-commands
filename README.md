@@ -20,7 +20,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/2.0.0 darwin-x64 node-v12.22.6
+@oclif/plugin-commands/2.0.2 linux-x64 node-v12.22.8
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -29,10 +29,7 @@ USAGE
 <!-- usagestop -->
 # Commands
 <!-- commands -->
-- [@oclif/plugin-commands](#oclifplugin-commands)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`oclif-example commands`](#oclif-example-commands)
+* [`oclif-example commands`](#oclif-example-commands)
 
 ## `oclif-example commands`
 
@@ -40,12 +37,11 @@ list all the commands
 
 ```
 USAGE
-  $ oclif-example commands [-h] [-j] [--hidden] [--columns <value> | -x] [--sort <value>] [--filter <value>]
-    [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
+  $ oclif-example commands [--json] [-h] [--hidden] [--columns <value> | -x] [--sort <value>] [--filter
+    <value>] [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
 
 FLAGS
-  -h, --help         show CLI help
-  -j, --json         display unfiltered api data in json format
+  -h, --help         Show CLI help.
   -x, --extended     show extra columns
   --columns=<value>  only show provided columns (comma-separated)
   --csv              output is csv format [alias: --output=csv]
@@ -57,9 +53,12 @@ FLAGS
                      <options: csv|json|yaml>
   --sort=<value>     property to sort by (prepend '-' for descending)
 
+GLOBAL FLAGS
+  --json  Format output as json.
+
 DESCRIPTION
   list all the commands
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.0.0/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.0.2/src/commands/commands.ts)_
 <!-- commandsstop -->

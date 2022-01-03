@@ -1,3 +1,19 @@
+# Changelog
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+### [2.0.2](https://github.com/oclif/plugin-commands/compare/v2.0.0...v2.0.2) (2022-01-03)
+
+
+### Bug Fixes
+
+* add summary and use configured command ([#217](https://github.com/oclif/plugin-commands/issues/217)) ([d1ce99e](https://github.com/oclif/plugin-commands/commit/d1ce99eb233155e019a585177972188953b0ffaf))
+* build error ([6cc7807](https://github.com/oclif/plugin-commands/commit/6cc780725e5dbb64fbc105206cc580bf45325749))
+* bump deps ([#234](https://github.com/oclif/plugin-commands/issues/234)) ([04c903d](https://github.com/oclif/plugin-commands/commit/04c903d45a51987f6262628c7a401481dc237145))
+* bump deps and fix tests ([#236](https://github.com/oclif/plugin-commands/issues/236)) ([064da3f](https://github.com/oclif/plugin-commands/commit/064da3f22778c9625c640012b883eee8c1528ab1))
+* bump-deps ([#235](https://github.com/oclif/plugin-commands/issues/235)) ([55b3e59](https://github.com/oclif/plugin-commands/commit/55b3e59e0743078d2bf81bfa75a56ebd0b746c4b))
+* use enableJsonFlag to enable json output ([#253](https://github.com/oclif/plugin-commands/issues/253)) ([5c839bc](https://github.com/oclif/plugin-commands/commit/5c839bc3d5b079c3080858ca4bc704283ff9d345))
+
 ## [1.2.2](https://github.com/oclif/plugin-commands/compare/v1.2.1...v1.2.2) (2018-10-13)
 
 
