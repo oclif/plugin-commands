@@ -57,8 +57,8 @@ describe('commands', () => {
 
   test
   .stdout()
-  .command(['commands', '-j'])
-  .it('runs commands -j', (ctx: { stdout: string }) => {
+  .command(['commands', '--json'])
+  .it('runs commands --json', (ctx: { stdout: string }) => {
     expect(JSON.parse(ctx.stdout)[0].id).to.equal('commands')
   })
 
