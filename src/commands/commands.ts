@@ -7,10 +7,11 @@ type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
   static description = 'list all the commands'
 
+  static enableJsonFlag = true
+
   // to-do: update this type when cli-ux is on core
   static flags: any = {
     help: Flags.help({char: 'h'}),
-    json: Flags.boolean({char: 'j', description: 'display unfiltered api data in json format'}),
     hidden: Flags.boolean({description: 'show hidden commands'}),
     ...ux.table.flags(),
   }
@@ -32,8 +33,8 @@ export default class Commands extends Command {
       return command
     })
 
-    if (flags.json) {
-      ux.styledJSON(await Promise.all(commands.map(async cmd => {
+    if (this.jsonEnabled()) {
+      const formatted = await Promise.all(commands.map(async cmd => {
         let commandClass = await cmd.load()
         const obj = {...cmd, ...commandClass}
 
@@ -48,43 +49,44 @@ export default class Commands extends Command {
 
         // If Command classes have circular references, don't break the commands command.
         return this.removeCycles(obj)
-      })))
-    } else {
-      ux.table(commands.map(command => {
-        // Massage some fields so it looks good in the table
-        command.description = (command.description || '').split(EOL)[0]
-        command.summary = (command.summary || (command.description || '').split(EOL)[0])
-        command.hidden = Boolean(command.hidden)
-        command.usage = (command.usage || '')
-        return command as unknown as Record<string, unknown>
-      }), {
-        id: {
-          header: 'Command',
-        },
-        summary: {},
-        description: {
-          extended: true,
-        },
-        usage: {
-          extended: true,
-        },
-        pluginName: {
-          extended: true,
-          header: 'Plugin',
-        },
-        pluginType: {
-          extended: true,
-          header: 'Type',
-        },
-        hidden: {
-          extended: true,
-        },
-      }, {
-        // to-do: investigate this oclif/core error when printLine is enabled
-        // printLine: this.log,
-        ...flags, // parsed flags
-      })
+      }))
+      return formatted
     }
+
+    ux.table(commands.map(command => {
+      // Massage some fields so it looks good in the table
+      command.description = (command.description || '').split(EOL)[0]
+      command.summary = (command.summary || (command.description || '').split(EOL)[0])
+      command.hidden = Boolean(command.hidden)
+      command.usage = (command.usage || '')
+      return command as unknown as Record<string, unknown>
+    }), {
+      id: {
+        header: 'Command',
+      },
+      summary: {},
+      description: {
+        extended: true,
+      },
+      usage: {
+        extended: true,
+      },
+      pluginName: {
+        extended: true,
+        header: 'Plugin',
+      },
+      pluginType: {
+        extended: true,
+        header: 'Type',
+      },
+      hidden: {
+        extended: true,
+      },
+    }, {
+      // to-do: investigate this oclif/core error when printLine is enabled
+      // printLine: this.log,
+      ...flags, // parsed flags
+    })
   }
 
   private getCommands() {
