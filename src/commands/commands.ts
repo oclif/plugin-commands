@@ -1,5 +1,4 @@
-import {Command, Flags, toConfiguredId} from '@oclif/core'
-import {ux} from 'cli-ux'
+import {CliUx, Command, Flags, toConfiguredId} from '@oclif/core'
 import * as _ from 'lodash'
 import {EOL} from 'os'
 
@@ -9,11 +8,10 @@ export default class Commands extends Command {
 
   static enableJsonFlag = true
 
-  // to-do: update this type when cli-ux is on core
   static flags: any = {
     help: Flags.help({char: 'h'}),
     hidden: Flags.boolean({description: 'show hidden commands'}),
-    ...ux.table.flags(),
+    ...CliUx.ux.table.flags(),
   }
 
   async run() {
@@ -53,7 +51,7 @@ export default class Commands extends Command {
       return formatted
     }
 
-    ux.table(commands.map(command => {
+    CliUx.ux.table(commands.map(command => {
       // Massage some fields so it looks good in the table
       command.description = (command.description || '').split(EOL)[0]
       command.summary = (command.summary || (command.description || '').split(EOL)[0])
