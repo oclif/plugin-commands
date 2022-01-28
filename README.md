@@ -20,7 +20,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/2.0.2 linux-x64 node-v12.22.8
+@oclif/plugin-commands/2.0.2 linux-x64 node-v12.22.9
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
