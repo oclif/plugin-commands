@@ -1,6 +1,7 @@
 import {CliUx, Command, Flags, toConfiguredId} from '@oclif/core'
 import * as _ from 'lodash'
 import {EOL} from 'os'
+import createCommandTree from '../utils/tree'
 
 type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
@@ -11,6 +12,7 @@ export default class Commands extends Command {
   static flags: any = {
     help: Flags.help({char: 'h'}),
     hidden: Flags.boolean({description: 'show hidden commands'}),
+    tree: Flags.boolean({description: 'show tree of commands'}),
     ...CliUx.ux.table.flags(),
   }
 
@@ -31,7 +33,7 @@ export default class Commands extends Command {
       return command
     })
 
-    if (this.jsonEnabled()) {
+    if (this.jsonEnabled() && !flags.tree) {
       const formatted = await Promise.all(commands.map(async cmd => {
         let commandClass = await cmd.load()
         const obj = {...cmd, ...commandClass}
@@ -49,6 +51,16 @@ export default class Commands extends Command {
         return this.removeCycles(obj)
       }))
       return formatted
+    }
+
+    if (flags.tree) {
+      const tree = createCommandTree(commands, this.config.topicSeparator)
+
+      if (!this.jsonEnabled()) {
+        tree.display()
+      }
+
+      return tree
     }
 
     CliUx.ux.table(commands.map(command => {
