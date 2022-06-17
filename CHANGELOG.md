@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [2.2.0](https://github.com/oclif/plugin-commands/compare/v2.1.0...v2.2.0) (2022-06-17)
+
+
+### Features
+
+* add a tree view for commands ([#292](https://github.com/oclif/plugin-commands/issues/292)) ([0ea4028](https://github.com/oclif/plugin-commands/commit/0ea402853f89507db41fce2adcdab99e33c14cf7))
+
 ## [2.1.0](https://github.com/oclif/plugin-commands/compare/v2.0.2...v2.1.0) (2022-01-28)
 
 

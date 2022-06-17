@@ -20,7 +20,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/2.0.2 linux-x64 node-v12.22.9
+@oclif/plugin-commands/2.1.0 linux-x64 node-v14.19.3
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -37,8 +37,8 @@ list all the commands
 
 ```
 USAGE
-  $ oclif-example commands [--json] [-h] [--hidden] [--columns <value> | -x] [--sort <value>] [--filter
-    <value>] [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
+  $ oclif-example commands [--json] [-h] [--hidden] [--tree] [--columns <value> | -x] [--sort <value>]
+    [--filter <value>] [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
 
 FLAGS
   -h, --help         Show CLI help.
@@ -52,6 +52,7 @@ FLAGS
   --output=<option>  output in a more machine friendly format
                      <options: csv|json|yaml>
   --sort=<value>     property to sort by (prepend '-' for descending)
+  --tree             show tree of commands
 
 GLOBAL FLAGS
   --json  Format output as json.
@@ -60,5 +61,5 @@ DESCRIPTION
   list all the commands
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.0.2/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.1.0/src/commands/commands.ts)_
 <!-- commandsstop -->
