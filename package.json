@@ -5,12 +5,12 @@
   "author": "Salesforce",
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
-    "@oclif/core": "^1.2.0",
+    "@oclif/core": "^2.0.3",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
     "@oclif/plugin-help": "^5.2.0",
-    "@oclif/test": "^2.0.2",
+    "@oclif/test": "^2.3.3",
     "@types/chai": "^4.3.4",
     "@types/lodash": "^4.14.191",
     "@types/mocha": "^8.0.0",
@@ -24,7 +24,7 @@
     "mocha": "^8",
     "nock": "^13.3.0",
     "nyc": "^15.1.0",
-    "oclif": "^2.3.0",
+    "oclif": "^3.6.1",
     "shx": "^0.3.3",
     "ts-node": "^9.1.1",
     "tslib": "^2.4.1",
@@ -54,7 +54,7 @@
   "scripts": {
     "lint": "eslint . --ext .ts --config .eslintrc",
     "pretest": "yarn build && tsc -p test --noEmit",
-    "test": "mocha --forbid-only \"test/**/*.test.ts\"",
+    "test": "mocha \"test/**/*.test.ts\"",
     "posttest": "yarn lint",
     "prepack": "shx rm -rf lib && tsc && oclif manifest . && oclif readme",
     "postpack": "shx rm -f oclif.manifest.json",

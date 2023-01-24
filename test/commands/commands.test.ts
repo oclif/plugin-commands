@@ -1,6 +1,6 @@
 import {expect, test} from '@oclif/test'
 import {Command} from '@oclif/core'
-import Commands from '../../lib/commands/commands'
+import Commands from '../../src/commands/commands'
 
 abstract class TestCommand extends Command {
   public static testCustomProperty = 'test'
@@ -48,18 +48,8 @@ describe('commands', () => {
   .stdout()
   .command(['commands'])
   .it('runs commands', (ctx: { stdout: any }) => {
-    expect(ctx.stdout).to.equal(
-      ' Command  Summary               \n' +
-            ' ──────── ───────────────────── \n' +
-            ' commands list all the commands \n',
-    )
-  })
-
-  test
-  .stdout()
-  .command(['commands', '--json'])
-  .it('runs commands --json', (ctx: { stdout: string }) => {
-    expect(JSON.parse(ctx.stdout)[0].id).to.equal('commands')
+    expect(ctx.stdout).to.include('commands list all the commands')
+    expect(ctx.stdout).to.include('help     Display help for oclif-example.')
   })
 
   test

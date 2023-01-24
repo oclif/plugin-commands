@@ -1,4 +1,4 @@
-import {CliUx, Command, Flags, toConfiguredId} from '@oclif/core'
+import {ux, Command, Flags, toConfiguredId} from '@oclif/core'
 import * as _ from 'lodash'
 import {EOL} from 'os'
 import createCommandTree from '../utils/tree'
@@ -9,11 +9,11 @@ export default class Commands extends Command {
 
   static enableJsonFlag = true
 
-  static flags: any = {
+  static flags = {
     help: Flags.help({char: 'h'}),
     hidden: Flags.boolean({description: 'show hidden commands'}),
     tree: Flags.boolean({description: 'show tree of commands'}),
-    ...CliUx.ux.table.flags(),
+    ...ux.table.flags(),
   }
 
   async run() {
@@ -63,7 +63,7 @@ export default class Commands extends Command {
       return tree
     }
 
-    CliUx.ux.table(commands.map(command => {
+    ux.table(commands.map(command => {
       // Massage some fields so it looks good in the table
       command.description = (command.description || '').split(EOL)[0]
       command.summary = (command.summary || (command.description || '').split(EOL)[0])

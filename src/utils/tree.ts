@@ -1,4 +1,4 @@
-import {CliUx, Interfaces} from '@oclif/core'
+import {ux, Command} from '@oclif/core'
 import {Tree} from '@oclif/core/lib/cli-ux/styled/tree'
 
 const addNodes = (tree: Tree, commandParts: string[]) => {
@@ -18,8 +18,8 @@ const addNodes = (tree: Tree, commandParts: string[]) => {
   }
 }
 
-const createCommandTree = (commands: Interfaces.Command[], topicSeparator = ':') => {
-  const tree = CliUx.ux.tree()
+const createCommandTree = (commands: Command.Loadable[], topicSeparator = ':') => {
+  const tree = ux.tree()
 
   commands.forEach(command => {
     const commandParts = command.id.split(topicSeparator)
