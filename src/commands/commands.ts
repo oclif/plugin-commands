@@ -35,7 +35,14 @@ export default class Commands extends Command {
 
     if (this.jsonEnabled() && !flags.tree) {
       const formatted = await Promise.all(commands.map(async cmd => {
-        let commandClass = await cmd.load()
+        // @ts-expect-error
+        let commandClass: Command.Class = {}
+        try {
+          commandClass = await cmd.load()
+        } catch (error) {
+          this.debug(error)
+        }
+
         const obj = {...cmd, ...commandClass}
 
         // Load all properties on all extending classes.
