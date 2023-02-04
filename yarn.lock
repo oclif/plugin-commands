@@ -465,12 +465,12 @@
     lodash "^4.17.21"
     semver "^7.3.8"
 
-"@oclif/test@^2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.3.3.tgz#ac9e546c58edb8c1a0767fe9e4b556af71a0154a"
-  integrity sha512-7cT12WxuNTcbON3dRxu3D8GNOqv/cCKkH3d39Dsa+QQFtFPzhQysaW27QdwivTRPSauD+3jQfmScb2qd1l6Dig==
+"@oclif/test@^2.3.4":
+  version "2.3.4"
+  resolved "https://registry.yarnpkg.com/@oclif/test/-/test-2.3.4.tgz#eddeda4e13a5665c9fd65e06f34cd2faca14caee"
+  integrity sha512-sIuDKKw108NQxPbo+j/TY6HBe1j2tbtjEOJ9aHpU7U+hwsTL3/zyU1YZgiGekdQ/OA0PULz3VLafSs+IioWHmw==
   dependencies:
-    "@oclif/core" "^2.0.3"
+    "@oclif/core" "^2.0.7"
     fancy-test "^2.0.12"
 
 "@octokit/auth-token@^2.4.4":
