@@ -1,16 +1,16 @@
 {
   "name": "@oclif/plugin-commands",
   "description": "plugin to show the list of all the commands",
-  "version": "2.2.7",
+  "version": "2.2.8",
   "author": "Salesforce",
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
-    "@oclif/core": "^2.0.8",
+    "@oclif/core": "^2.1.1",
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@oclif/plugin-help": "^5.2.2",
-    "@oclif/test": "^2.3.4",
+    "@oclif/plugin-help": "^5.2.4",
+    "@oclif/test": "^2.3.5",
     "@types/chai": "^4.3.4",
     "@types/lodash": "^4.14.191",
     "@types/mocha": "^8.0.0",
@@ -24,7 +24,7 @@
     "mocha": "^8",
     "nock": "^13.3.0",
     "nyc": "^15.1.0",
-    "oclif": "^3.6.2",
+    "oclif": "^3.6.3",
     "shx": "^0.3.3",
     "ts-node": "^9.1.1",
     "tslib": "^2.5.0",
