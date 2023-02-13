@@ -57,7 +57,7 @@ export default class Commands extends Command {
         // If Command classes have circular references, don't break the commands command.
         return this.removeCycles(obj)
       }))
-      return formatted
+      return _.uniqBy(formatted, 'id')
     }
 
     if (flags.tree) {
