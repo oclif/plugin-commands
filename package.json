@@ -12,7 +12,7 @@
     "@oclif/plugin-help": "^5.2.8",
     "@oclif/test": "^2.3.13",
     "@types/chai": "^4.3.4",
-    "@types/lodash": "^4.14.191",
+    "@types/lodash": "^4.14.192",
     "@types/mocha": "^8.0.0",
     "@types/nock": "^11.1.0",
     "@types/node": "^14.18.40",
