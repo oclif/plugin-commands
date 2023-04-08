@@ -9,7 +9,7 @@
     "lodash": "^4.17.11"
   },
   "devDependencies": {
-    "@oclif/plugin-help": "^5.2.8",
+    "@oclif/plugin-help": "^5.2.9",
     "@oclif/test": "^2.3.14",
     "@types/chai": "^4.3.4",
     "@types/lodash": "^4.14.192",
