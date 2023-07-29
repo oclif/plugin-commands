@@ -1,7 +1,7 @@
 {
   "name": "@oclif/plugin-commands",
   "description": "plugin to show the list of all the commands",
-  "version": "2.2.20",
+  "version": "2.2.21",
   "author": "Salesforce",
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
