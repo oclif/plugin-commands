@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "@oclif/plugin-help": "^5.2.15",
-    "@oclif/test": "^2.4.0",
+    "@oclif/test": "^2.4.2",
     "@types/chai": "^4.3.5",
     "@types/lodash": "^4.14.196",
     "@types/mocha": "^8.0.0",
