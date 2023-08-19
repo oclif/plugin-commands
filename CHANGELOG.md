@@ -1,3 +1,12 @@
+## [2.2.23](https://github.com/oclif/plugin-commands/compare/2.2.22...2.2.23) (2023-08-19)
+
+
+### Bug Fixes
+
+* **deps:** bump ansi-regex from 3.0.0 to 3.0.1 ([#478](https://github.com/oclif/plugin-commands/issues/478)) ([d537989](https://github.com/oclif/plugin-commands/commit/d537989591a9cadc5f13cd71974afdf9921e9fc3))
+
+
+
 ## [2.2.22](https://github.com/oclif/plugin-commands/compare/2.2.21...2.2.22) (2023-08-12)
 
 
