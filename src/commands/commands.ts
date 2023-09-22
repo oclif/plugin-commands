@@ -48,7 +48,10 @@ export default class Commands extends Command {
         // Load all properties on all extending classes.
         while (commandClass !== undefined) {
           commandClass = Object.getPrototypeOf(commandClass) || undefined
-          Object.assign(obj, commandClass)
+          // ES2022 will return all unset static properties on the prototype as undefined. This is different from ES2021
+          // which only returns the static properties that are set by defaults. In order to prevent
+          // Object.assign from overwriting the properties on the object, we need to filter out the undefined values.
+          Object.assign(obj, _.pickBy(commandClass, v => v !== undefined))
         }
 
         // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
