@@ -1,3 +1,12 @@
+## [2.2.26](https://github.com/oclif/plugin-commands/compare/2.2.25...2.2.26) (2023-09-22)
+
+
+### Bug Fixes
+
+* filter undefined static properties to support @oclif/core using ES2022 ([#496](https://github.com/oclif/plugin-commands/issues/496)) ([e7e4381](https://github.com/oclif/plugin-commands/commit/e7e43818c2b10559a46578a7def130e63c30ff83))
+
+
+
 ## [2.2.25](https://github.com/oclif/plugin-commands/compare/2.2.24...2.2.25) (2023-09-03)
 
 
