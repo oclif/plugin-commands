@@ -1,3 +1,12 @@
+## [2.2.28](https://github.com/oclif/plugin-commands/compare/2.2.27...2.2.28) (2023-10-03)
+
+
+### Bug Fixes
+
+* **deps:** bump debug from 3.2.5 to 3.2.7 ([#507](https://github.com/oclif/plugin-commands/issues/507)) ([3f308c7](https://github.com/oclif/plugin-commands/commit/3f308c7a547c1da3930eecee661f90b13bdc7ddb))
+
+
+
 ## [2.2.27](https://github.com/oclif/plugin-commands/compare/2.2.26...2.2.27) (2023-09-28)
 
 
