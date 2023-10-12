@@ -1,7 +1,11 @@
-import {ux, Command, Flags, toConfiguredId} from '@oclif/core'
-import * as _ from 'lodash'
-import {EOL} from 'os'
-import createCommandTree from '../utils/tree'
+import {Command, Flags, toConfiguredId, ux} from '@oclif/core'
+import pickBy from 'lodash.pickby'
+import sortBy from 'lodash.sortby'
+import template from 'lodash.template'
+import uniqBy from 'lodash.uniqby'
+import {EOL} from 'node:os'
+
+import createCommandTree from '../utils/tree.js'
 
 type Dictionary = {[index: string]: object}
 export default class Commands extends Command {
@@ -20,51 +24,58 @@ export default class Commands extends Command {
     const {flags} = await this.parse(Commands)
     let commands = this.getCommands()
     if (!flags.hidden) {
-      commands = commands.filter(c => !c.hidden)
+      commands = commands.filter((c) => !c.hidden)
     }
 
-    const config = this.config
-    commands = _.sortBy(commands, 'id').map(command => {
+    const {config} = this
+    commands = sortBy(commands, 'id').map((command) => {
       // Template supported fields.
-      command.description = (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined
-      command.summary = (typeof command.summary === 'string' && _.template(command.summary)({command, config})) || undefined
-      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined
-      command.id = toConfiguredId(command.id, this.config)
+      command.description =
+        (typeof command.description === 'string' && template(command.description)({command, config})) || undefined
+      command.summary =
+        (typeof command.summary === 'string' && template(command.summary)({command, config})) || undefined
+      command.usage = (typeof command.usage === 'string' && template(command.usage)({command, config})) || undefined
+      command.id = toConfiguredId(command.id, config)
       return command
     })
 
     if (this.jsonEnabled() && !flags.tree) {
-      const formatted = await Promise.all(commands.map(async cmd => {
-        // @ts-expect-error
-        let commandClass: Command.Class = {}
-        try {
-          commandClass = await cmd.load()
-        } catch (error) {
-          this.debug(error)
-        }
+      const formatted = await Promise.all(
+        commands.map(async (cmd) => {
+          // @ts-expect-error because we are dynamically loading the command class
+          let commandClass: Command.Class = {}
+          try {
+            commandClass = await cmd.load()
+          } catch (error) {
+            this.debug(error)
+          }
 
-        const obj = {...cmd, ...commandClass}
+          const obj = {...cmd, ...commandClass}
 
-        // Load all properties on all extending classes.
-        while (commandClass !== undefined) {
-          commandClass = Object.getPrototypeOf(commandClass) || undefined
-          // ES2022 will return all unset static properties on the prototype as undefined. This is different from ES2021
-          // which only returns the static properties that are set by defaults. In order to prevent
-          // Object.assign from overwriting the properties on the object, we need to filter out the undefined values.
-          Object.assign(obj, _.pickBy(commandClass, v => v !== undefined))
-        }
+          // Load all properties on all extending classes.
+          while (commandClass !== undefined) {
+            commandClass = Object.getPrototypeOf(commandClass) || undefined
+            // ES2022 will return all unset static properties on the prototype as undefined. This is different from ES2021
+            // which only returns the static properties that are set by defaults. In order to prevent
+            // Object.assign from overwriting the properties on the object, we need to filter out the undefined values.
+            Object.assign(
+              obj,
+              pickBy(commandClass, (v) => v !== undefined),
+            )
+          }
 
-        // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
-        delete obj.plugin
+          // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
+          delete obj.plugin
 
-        // If Command classes have circular references, don't break the commands command.
-        return this.removeCycles(obj)
-      }))
-      return _.uniqBy(formatted, 'id')
+          // If Command classes have circular references, don't break the commands command.
+          return this.removeCycles(obj)
+        }),
+      )
+      return uniqBy(formatted, 'id')
     }
 
     if (flags.tree) {
-      const tree = createCommandTree(commands, this.config.topicSeparator)
+      const tree = createCommandTree(commands, config.topicSeparator)
 
       if (!this.jsonEnabled()) {
         tree.display()
@@ -73,40 +84,44 @@ export default class Commands extends Command {
       return tree
     }
 
-    ux.table(commands.map(command => {
-      // Massage some fields so it looks good in the table
-      command.description = (command.description || '').split(EOL)[0]
-      command.summary = (command.summary || (command.description || '').split(EOL)[0])
-      command.hidden = Boolean(command.hidden)
-      command.usage = (command.usage || '')
-      return command as unknown as Record<string, unknown>
-    }), {
-      id: {
-        header: 'Command',
+    ux.table(
+      commands.map((command) => {
+        // Massage some fields so it looks good in the table
+        command.description = (command.description || '').split(EOL)[0]
+        command.summary = command.summary || (command.description || '').split(EOL)[0]
+        command.hidden = Boolean(command.hidden)
+        command.usage = command.usage || ''
+        return command as unknown as Record<string, unknown>
+      }),
+      {
+        description: {
+          extended: true,
+        },
+        hidden: {
+          extended: true,
+        },
+        id: {
+          header: 'Command',
+        },
+        pluginName: {
+          extended: true,
+          header: 'Plugin',
+        },
+        pluginType: {
+          extended: true,
+          header: 'Type',
+        },
+        summary: {},
+        usage: {
+          extended: true,
+        },
       },
-      summary: {},
-      description: {
-        extended: true,
+      {
+        // to-do: investigate this oclif/core error when printLine is enabled
+        // printLine: this.log,
+        ...flags, // parsed flags
       },
-      usage: {
-        extended: true,
-      },
-      pluginName: {
-        extended: true,
-        header: 'Plugin',
-      },
-      pluginType: {
-        extended: true,
-        header: 'Type',
-      },
-      hidden: {
-        extended: true,
-      },
-    }, {
-      // to-do: investigate this oclif/core error when printLine is enabled
-      // printLine: this.log,
-      ...flags, // parsed flags
-    })
+    )
   }
 
   private getCommands() {
@@ -123,10 +138,8 @@ export default class Commands extends Command {
         // We know it is a "Dictionary" because of the conditional
         const dictionary = obj as Dictionary
 
-        if (seenObjects.has(dictionary)) {
-          // Seen, return undefined to remove.
-          return undefined
-        }
+        // Seen, return undefined to remove.
+        if (seenObjects.has(dictionary)) return
 
         seenObjects.set(dictionary, undefined)
 

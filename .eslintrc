@@ -1,9 +1,0 @@
-{
-  "ignorePatterns": ["lib/**/*"],
-  "extends": [
-    "oclif",
-    "oclif-typescript"
-  ],
-  "rules": {
-  }
-}
