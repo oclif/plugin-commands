@@ -86,11 +86,11 @@ export default class Commands extends Command {
     ux.table(
       commands.map((command) => {
         // Massage some fields so it looks good in the table
-        command.description = (command.description || '').split(EOL)[0]
-        command.summary = command.summary || (command.description || '').split(EOL)[0]
+        command.description = (command.description ?? '').split(EOL)[0]
+        command.summary = command.summary ?? (command.description ?? '').split(EOL)[0]
         command.hidden = Boolean(command.hidden)
-        command.usage = command.usage || ''
-        return command as unknown as Record<string, unknown>
+        command.usage ??= ''
+        return command
       }),
       {
         description: {
