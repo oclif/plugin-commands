@@ -1,20 +1,21 @@
-@oclif/plugin-commands
-======================
+# @oclif/plugin-commands
 
 plugin to show the list of all the commands
 
 [![Version](https://img.shields.io/npm/v/@oclif/plugin-commands.svg)](https://npmjs.org/package/@oclif/plugin-commands)
-[![CircleCI](https://circleci.com/gh/oclif/plugin-commands/tree/main.svg?style=shield)](https://circleci.com/gh/oclif/plugin-commands/tree/main)
-[![Appveyor CI](https://ci.appveyor.com/api/projects/status/github/oclif/plugin-commands?branch=main&svg=true)](https://ci.appveyor.com/project/oclif/plugin-commands/branch/main)
 [![Downloads/week](https://img.shields.io/npm/dw/@oclif/plugin-commands.svg)](https://npmjs.org/package/@oclif/plugin-commands)
 [![License](https://img.shields.io/npm/l/@oclif/plugin-commands.svg)](https://github.com/oclif/plugin-commands/blob/main/package.json)
 
 <!-- toc -->
-* [Usage](#usage)
-* [Commands](#commands)
+
+- [Usage](#usage)
+- [Commands](#commands)
 <!-- tocstop -->
+
 # Usage
+
 <!-- usage -->
+
 ```sh-session
 $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
@@ -26,10 +27,17 @@ USAGE
   $ oclif-example COMMAND
 ...
 ```
+
 <!-- usagestop -->
+
 # Commands
+
 <!-- commands -->
-* [`oclif-example commands`](#oclif-example-commands)
+
+- [@oclif/plugin-commands](#oclifplugin-commands)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`oclif-example commands`](#oclif-example-commands)
 
 ## `oclif-example commands`
 
@@ -62,4 +70,5 @@ DESCRIPTION
 ```
 
 _See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.1.0/src/commands/commands.ts)_
+
 <!-- commandsstop -->
