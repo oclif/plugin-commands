@@ -8,6 +8,7 @@ plugin to show the list of all the commands
 
 <!-- toc -->
 
+- [@oclif/plugin-commands](#oclifplugin-commands)
 - [Usage](#usage)
 - [Commands](#commands)
 <!-- tocstop -->
@@ -21,7 +22,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/2.1.0 linux-x64 node-v14.19.3
+@oclif/plugin-commands/2.2.29 linux-x64 node-v18.18.0
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -34,10 +35,7 @@ USAGE
 
 <!-- commands -->
 
-- [@oclif/plugin-commands](#oclifplugin-commands)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`oclif-example commands`](#oclif-example-commands)
+- [`oclif-example commands`](#oclif-example-commands)
 
 ## `oclif-example commands`
 
@@ -45,8 +43,8 @@ list all the commands
 
 ```
 USAGE
-  $ oclif-example commands [--json] [-h] [--hidden] [--tree] [--columns <value> | -x] [--sort <value>]
-    [--filter <value>] [--output csv|json|yaml |  | [--csv | --no-truncate]] [--no-header | ]
+  $ oclif-example commands [--json] [-h] [--hidden] [--tree] [--columns <value> | -x] [--filter <value>]
+    [--no-header | [--csv | --no-truncate]] [--output csv|json|yaml |  | ] [--sort <value>]
 
 FLAGS
   -h, --help         Show CLI help.
@@ -69,6 +67,6 @@ DESCRIPTION
   list all the commands
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/v2.1.0/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/2.2.29/src/commands/commands.ts)_
 
 <!-- commandsstop -->
