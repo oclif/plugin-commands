@@ -1,3 +1,9 @@
+## [3.0.3](https://github.com/oclif/plugin-commands/compare/3.0.2...3.0.3) (2023-10-15)
+
+### Bug Fixes
+
+- **deps:** bump minimatch from 3.0.4 to 3.1.2 ([#510](https://github.com/oclif/plugin-commands/issues/510)) ([4fc14a3](https://github.com/oclif/plugin-commands/commit/4fc14a3bb029c236dc20cb5823331cf8a3ccdc53))
+
 ## [3.0.2](https://github.com/oclif/plugin-commands/compare/3.0.1...3.0.2) (2023-10-14)
 
 ### Bug Fixes
