@@ -25,7 +25,7 @@
     "@types/nock": "^11.1.0",
     "@types/node": "^18",
     "chai": "^4.3.10",
-    "commitlint": "^17.7.2",
+    "commitlint": "^17.8.1",
     "eslint": "^8.51.0",
     "eslint-config-oclif": "^5.0.0",
     "eslint-config-oclif-typescript": "^3.0.5",
