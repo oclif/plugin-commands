@@ -996,10 +996,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.sortby@^4.7.7":
-  version "4.7.7"
-  resolved "https://registry.yarnpkg.com/@types/lodash.sortby/-/lodash.sortby-4.7.7.tgz#10bf6eecd4d69aacb87e093e65bd4eb5a13b0237"
-  integrity sha512-J/4IS+jQopGBrrRetBXDCX0KnSeXJZ0rOTmGAxR9MWGV24YdHxX8IRi9LCGAU9GKWlBov9KRSfQpuup9PReqrw==
+"@types/lodash.sortby@^4.7.8":
+  version "4.7.8"
+  resolved "https://registry.yarnpkg.com/@types/lodash.sortby/-/lodash.sortby-4.7.8.tgz#56c08bc3fdb85da8a1d8a199e482c641949b5c8b"
+  integrity sha512-+JxRnAqZRZQ/lgvtOowq/iyAMtHjO06eyzSFkuGLos/n7RuJy1oqZg/ucxvraAQYb+DNnq3LToZxubJclTxhvA==
   dependencies:
     "@types/lodash" "*"
 
