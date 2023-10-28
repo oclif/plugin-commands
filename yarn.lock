@@ -1100,10 +1100,10 @@
   dependencies:
     "@types/lodash" "*"
 
-"@types/lodash.template@^4.5.1":
-  version "4.5.1"
-  resolved "https://registry.yarnpkg.com/@types/lodash.template/-/lodash.template-4.5.1.tgz#3a2325e02963ca8aced4a657598ac26816340d83"
-  integrity sha512-0y71S2dGgmwdkSsyW95JBp8HSZchgKCsjr6F0lsT3eSMtaT3Nn9rcMHU1U4UKu6XjQT3YC6/PNwgFI7k9f+ltw==
+"@types/lodash.template@^4.5.2":
+  version "4.5.2"
+  resolved "https://registry.yarnpkg.com/@types/lodash.template/-/lodash.template-4.5.2.tgz#0e26d3324f10fd1a044da1088a87e3fbc03e520d"
+  integrity sha512-9V69JSviqXywQC9O/vZ5WjO4kmcol55t+pZDcsrKXkO4D5rGdF2/J0Ke2iChq689xIRoVGWXTQ8DGh9Lbg/UVg==
   dependencies:
     "@types/lodash" "*"
 
