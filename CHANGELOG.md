@@ -1,3 +1,9 @@
+## [3.0.7](https://github.com/oclif/plugin-commands/compare/3.0.6...3.0.7) (2023-11-19)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 3.10.1 to 3.11.0 ([#536](https://github.com/oclif/plugin-commands/issues/536)) ([2655ca7](https://github.com/oclif/plugin-commands/commit/2655ca7f81fd9aecce7e7526e01cd98f92ba22d2))
+
 ## [3.0.6](https://github.com/oclif/plugin-commands/compare/3.0.5...3.0.6) (2023-11-04)
 
 ### Bug Fixes
