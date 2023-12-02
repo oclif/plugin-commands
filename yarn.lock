@@ -1072,10 +1072,10 @@
   dependencies:
     "@types/node" "*"
 
-"@types/lodash.pickby@^4.6.8":
-  version "4.6.8"
-  resolved "https://registry.yarnpkg.com/@types/lodash.pickby/-/lodash.pickby-4.6.8.tgz#1acdd5c45fd98acbab9ebb2a13082b7beb737bac"
-  integrity sha512-V9FXPmtaawzkyXQ3zVMtLrNinVSUTGNzzf6rkngzDZigzGxvRus+QT3HYpYvoEKMe1/t+sJtw8odeN1qf7sDmA==
+"@types/lodash.pickby@^4.6.9":
+  version "4.6.9"
+  resolved "https://registry.yarnpkg.com/@types/lodash.pickby/-/lodash.pickby-4.6.9.tgz#b6d72b1adf8601aa76736f298adcbaa8f734b831"
+  integrity sha512-SPI248FYnyd3jOxDeJq2vX2UKQnDzqacuqdeOVqwE1MPSk8gN8TA3FcHSMQWLlpBnuHgXvgKInvywbOFbidpJA==
   dependencies:
     "@types/lodash" "*"
 
