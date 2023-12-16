@@ -21,7 +21,7 @@
     "@types/lodash.sortby": "^4.7.9",
     "@types/lodash.template": "^4.5.3",
     "@types/lodash.uniqby": "^4.7.9",
-    "@types/mocha": "^10.0.4",
+    "@types/mocha": "^10.0.6",
     "@types/nock": "^11.1.0",
     "@types/node": "^18",
     "chai": "^4.3.10",
