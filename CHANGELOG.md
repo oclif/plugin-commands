@@ -1,3 +1,9 @@
+# [3.1.0](https://github.com/oclif/plugin-commands/compare/3.0.8...3.1.0) (2024-01-02)
+
+### Features
+
+- omit deprecated commands and deprecates aliases ([#568](https://github.com/oclif/plugin-commands/issues/568)) ([5ba6ee2](https://github.com/oclif/plugin-commands/commit/5ba6ee2be35994aee8960fc5bb932737fef54ec8))
+
 ## [3.0.8](https://github.com/oclif/plugin-commands/compare/3.0.7...3.0.8) (2023-12-16)
 
 ### Bug Fixes

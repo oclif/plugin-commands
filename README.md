@@ -22,7 +22,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/3.0.8 linux-x64 node-v18.19.0
+@oclif/plugin-commands/3.1.0 linux-x64 node-v18.19.0
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -43,14 +43,15 @@ list all the commands
 
 ```
 USAGE
-  $ oclif-example commands [--json] [-h] [--hidden] [--tree] [--columns <value> | -x] [--filter <value>]
-    [--no-header | [--csv | --no-truncate]] [--output csv|json|yaml |  | ] [--sort <value>]
+  $ oclif-example commands [--json] [--deprecated] [-h] [--hidden] [--tree] [--columns <value> | -x] [--filter
+    <value>] [--no-header | [--csv | --no-truncate]] [--output csv|json|yaml |  | ] [--sort <value>]
 
 FLAGS
   -h, --help             Show CLI help.
   -x, --extended         show extra columns
       --columns=<value>  only show provided columns (comma-separated)
       --csv              output is csv format [alias: --output=csv]
+      --deprecated       show deprecated commands
       --filter=<value>   filter property by partial string matching, ex: name=foo
       --hidden           show hidden commands
       --no-header        hide table header from output
@@ -67,6 +68,6 @@ DESCRIPTION
   list all the commands
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/3.0.8/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/3.1.0/src/commands/commands.ts)_
 
 <!-- commandsstop -->
