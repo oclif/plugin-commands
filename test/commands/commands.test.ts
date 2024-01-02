@@ -44,10 +44,35 @@ const commandList = [
     usage: 'anothertopic:subtopic:command --json',
   },
   {
+    aliases: [],
+    description: 'a deprecated command',
+    flags: {},
+    id: 'topic:subtopic:deprecated',
+    load: () => TestCommand,
+    pluginName: 'depTest',
+    pluginType: 'core',
+    state: 'deprecated',
+    usage: 'topic:subtopic:deprecated --json',
+  },
+  {
+    aliases: ['topic:subtopic:deprecated-alias'],
+    description: 'a command with a deprecated alias',
+    flags: {},
+    id: 'topic:subtopic:dep',
+    load: () => TestCommand,
+    pluginName: 'depTest',
+    pluginType: 'core',
+    usage: 'topic:subtopic:dep --json',
+  },
+  {
     hidden: true,
     id: 'hidden',
   },
 ]
+
+// instead of hardcoding the table formatting with spaces, etc we match id, some amount of spaces, then description
+const getRegexForCommand = (index: number): RegExp =>
+  new RegExp(`${commandList[index].id}\\s+${commandList[index].description}`)
 
 describe('commands', () => {
   test
@@ -64,13 +89,11 @@ describe('commands', () => {
     .stdout()
     .command(['commands', '--hidden'])
     .it('runs commands --hidden', (ctx) => {
-      expect(ctx.stdout).to.equal(
-        ' Command                       Summary                         \n' +
-          ' ───────────────────────────── ─────────────────────────────── \n' +
-          ' anothertopic:subtopic:command another super good test command \n' +
-          ' hidden                                                        \n' +
-          ' topic:subtopic:command        super good test command         \n',
-      )
+      expect(ctx.stdout).to.match(getRegexForCommand(0))
+      expect(ctx.stdout).to.match(getRegexForCommand(1))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(2))
+      expect(ctx.stdout).to.match(getRegexForCommand(3))
+      expect(ctx.stdout).to.match(getRegexForCommand(4))
     })
 
   test
@@ -78,11 +101,11 @@ describe('commands', () => {
     .stdout()
     .command(['commands', '--filter=Command=^topic'])
     .it('runs commands --filter="Command=^topic"', (ctx) => {
-      expect(ctx.stdout).to.equal(
-        ' Command                Summary                 \n' +
-          ' ────────────────────── ─────────────────────── \n' +
-          ' topic:subtopic:command super good test command \n',
-      )
+      expect(ctx.stdout).to.match(getRegexForCommand(0))
+      expect(ctx.stdout).not.to.match(getRegexForCommand(1))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(2))
+      expect(ctx.stdout).to.match(getRegexForCommand(3))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(4))
     })
 
   test
@@ -90,11 +113,11 @@ describe('commands', () => {
     .stdout()
     .command(['commands', '--filter=Plugin=anothertest'])
     .it('runs commands --filter="Plugin=anothertest"', (ctx) => {
-      expect(ctx.stdout).to.equal(
-        ' Command                       Summary                         \n' +
-          ' ───────────────────────────── ─────────────────────────────── \n' +
-          ' anothertopic:subtopic:command another super good test command \n',
-      )
+      expect(ctx.stdout).to.not.match(getRegexForCommand(0))
+      expect(ctx.stdout).to.match(getRegexForCommand(1))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(2))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(3))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(4))
     })
 
   test
@@ -102,11 +125,11 @@ describe('commands', () => {
     .stdout()
     .command(['commands', '--filter=Command=anothertopic:subtopic:command'])
     .it('runs commands --filter="Command=anothertopic:subtopic:command"', (ctx) => {
-      expect(ctx.stdout).to.equal(
-        ' Command                       Summary                         \n' +
-          ' ───────────────────────────── ─────────────────────────────── \n' +
-          ' anothertopic:subtopic:command another super good test command \n',
-      )
+      expect(ctx.stdout).to.not.match(getRegexForCommand(0))
+      expect(ctx.stdout).to.match(getRegexForCommand(1))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(2))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(3))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(4))
     })
 
   test
@@ -114,8 +137,10 @@ describe('commands', () => {
     .stdout()
     .command(['commands', '--columns=Command', '--no-header'])
     .it('runs commands --filter=Command=', (ctx) => {
-      // eslint-disable-next-line no-useless-concat
-      expect(ctx.stdout).to.equal(' anothertopic:subtopic:command \n' + ' topic:subtopic:command        \n')
+      expect(ctx.stdout).to.match(/ anothertopic:subtopic:command\s+/)
+      expect(ctx.stdout).to.match(/ topic:subtopic:command\s+/)
+      expect(ctx.stdout).to.match(/ topic:subtopic:dep\s+/)
+      expect(ctx.stdout).to.not.include('topic:subtopic:deprecated')
     })
 
   test
@@ -157,5 +182,33 @@ describe('commands', () => {
       expect(commands[1].id).to.equal('topic:subtopic:command')
       expect(commands[1].testCustomProperty).to.equal('test')
       expect(commands[1].anotherCustomProperty).to.equal(undefined)
+    })
+
+  test
+    .stub(Commands.prototype, 'getCommands', (stub) => stub.returns(commandList))
+    .stdout()
+    .command(['commands'])
+    .it('hides deprecated commands', (ctx: {stdout: string}) => {
+      expect(ctx.stdout).to.not.include('topic:subtopic:deprecated')
+    })
+
+  test
+    .stub(Commands.prototype, 'getCommands', (stub) => stub.returns(commandList))
+    .stdout()
+    .command(['commands'])
+    .it('hides deprecated aliases', (ctx: {stdout: string}) => {
+      expect(ctx.stdout).to.not.include('topic:subtopic:deprecated-alias')
+    })
+
+  test
+    .stub(Commands.prototype, 'getCommands', (stub) => stub.returns(commandList))
+    .stdout()
+    .command(['commands', '--deprecated'])
+    .it('shows deprecated commands when asked', (ctx: {stdout: string}) => {
+      expect(ctx.stdout).to.match(getRegexForCommand(0))
+      expect(ctx.stdout).to.match(getRegexForCommand(1))
+      expect(ctx.stdout).to.match(getRegexForCommand(2))
+      expect(ctx.stdout).to.match(getRegexForCommand(3))
+      expect(ctx.stdout).to.not.match(getRegexForCommand(4))
     })
 })

@@ -14,6 +14,7 @@ export default class Commands extends Command {
   static enableJsonFlag = true
 
   static flags = {
+    deprecated: Flags.boolean({description: 'show deprecated commands'}),
     help: Flags.help({char: 'h'}),
     hidden: Flags.boolean({description: 'show hidden commands'}),
     tree: Flags.boolean({description: 'show tree of commands'}),
@@ -23,8 +24,14 @@ export default class Commands extends Command {
   async run() {
     const {flags} = await this.parse(Commands)
     let commands = this.getCommands()
+
     if (!flags.hidden) {
       commands = commands.filter((c) => !c.hidden)
+    }
+
+    if (!flags.deprecated) {
+      const deprecatedAliases = new Set(commands.filter((c) => c.deprecateAliases).flatMap((c) => c.aliases))
+      commands = commands.filter((c) => c.state !== 'deprecated' && !deprecatedAliases.has(c.id))
     }
 
     const {config} = this
