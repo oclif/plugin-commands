@@ -1,3 +1,9 @@
+# [3.2.0](https://github.com/oclif/plugin-commands/compare/3.1.7...3.2.0) (2024-03-06)
+
+### Features
+
+- publish npm-shrinkwrap.json ([#604](https://github.com/oclif/plugin-commands/issues/604)) ([2169b8c](https://github.com/oclif/plugin-commands/commit/2169b8ca51fe49d85f572f620e08ff381a6a815e))
+
 ## [3.1.7](https://github.com/oclif/plugin-commands/compare/3.1.6...3.1.7) (2024-03-02)
 
 ### Bug Fixes
