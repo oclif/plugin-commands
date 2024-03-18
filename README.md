@@ -11,6 +11,8 @@ plugin to show the list of all the commands
 - [@oclif/plugin-commands](#oclifplugin-commands)
 - [Usage](#usage)
 - [Commands](#commands)
+  - [`oclif-example commands`](#oclif-example-commands)
+- [Contributing](#contributing)
 <!-- tocstop -->
 
 # Usage
@@ -35,7 +37,11 @@ USAGE
 
 <!-- commands -->
 
-- [`oclif-example commands`](#oclif-example-commands)
+- [@oclif/plugin-commands](#oclifplugin-commands)
+- [Usage](#usage)
+- [Commands](#commands)
+  - [`oclif-example commands`](#oclif-example-commands)
+- [Contributing](#contributing)
 
 ## `oclif-example commands`
 
@@ -71,3 +77,7 @@ DESCRIPTION
 _See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/3.2.0/src/commands/commands.ts)_
 
 <!-- commandsstop -->
+
+# Contributing
+
+See [contributing guide](./CONRTIBUTING.md)
