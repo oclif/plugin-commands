@@ -11,7 +11,7 @@ plugin to show the list of all the commands
 - [@oclif/plugin-commands](#oclifplugin-commands)
 - [Usage](#usage)
 - [Commands](#commands)
-  - [`oclif-example commands`](#oclif-example-commands)
+- [Command Topics](#command-topics)
 - [Contributing](#contributing)
 <!-- tocstop -->
 
@@ -24,7 +24,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/3.2.0 linux-x64 node-v18.19.1
+@oclif/plugin-commands/3.2.1 linux-x64 node-v18.19.1
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -37,44 +37,9 @@ USAGE
 
 <!-- commands -->
 
-- [@oclif/plugin-commands](#oclifplugin-commands)
-- [Usage](#usage)
-- [Commands](#commands)
-  - [`oclif-example commands`](#oclif-example-commands)
-- [Contributing](#contributing)
+# Command Topics
 
-## `oclif-example commands`
-
-list all the commands
-
-```
-USAGE
-  $ oclif-example commands [--json] [--deprecated] [-h] [--hidden] [--tree] [--columns <value> | -x] [--filter
-    <value>] [--no-header | [--csv | --no-truncate]] [--output csv|json|yaml |  | ] [--sort <value>]
-
-FLAGS
-  -h, --help             Show CLI help.
-  -x, --extended         show extra columns
-      --columns=<value>  only show provided columns (comma-separated)
-      --csv              output is csv format [alias: --output=csv]
-      --deprecated       show deprecated commands
-      --filter=<value>   filter property by partial string matching, ex: name=foo
-      --hidden           show hidden commands
-      --no-header        hide table header from output
-      --no-truncate      do not truncate output to fit screen
-      --output=<option>  output in a more machine friendly format
-                         <options: csv|json|yaml>
-      --sort=<value>     property to sort by (prepend '-' for descending)
-      --tree             show tree of commands
-
-GLOBAL FLAGS
-  --json  Format output as json.
-
-DESCRIPTION
-  list all the commands
-```
-
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/3.2.0/src/commands/commands.ts)_
+- [`oclif-example commands`](docs/commands.md) - list all the commands
 
 <!-- commandsstop -->
 
