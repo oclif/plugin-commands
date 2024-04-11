@@ -1,3 +1,9 @@
+# [3.3.0](https://github.com/oclif/plugin-commands/compare/3.2.2...3.3.0) (2024-04-11)
+
+### Features
+
+- export command ([#641](https://github.com/oclif/plugin-commands/issues/641)) ([1c0831d](https://github.com/oclif/plugin-commands/commit/1c0831d84304084a02cbe10ec0c4da374d3a2db8))
+
 ## [3.2.2](https://github.com/oclif/plugin-commands/compare/3.2.1...3.2.2) (2024-03-25)
 
 ## [3.2.1](https://github.com/oclif/plugin-commands/compare/3.2.0...3.2.1) (2024-03-23)
