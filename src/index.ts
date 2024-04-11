@@ -1,1 +1,5 @@
-export default {}
+import Commands from "./commands/commands.js";
+
+export const commands = {
+  commands: Commands
+}
