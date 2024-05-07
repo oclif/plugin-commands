@@ -1,5 +1,5 @@
 import {Command, Flags, toConfiguredId, ux} from '@oclif/core'
-import {pickBy, sortBy, template, uniqBy} from 'lodash'
+import _ from 'lodash'
 import {EOL} from 'node:os'
 
 import createCommandTree from '../utils/tree.js'
@@ -32,13 +32,13 @@ export default class Commands extends Command {
     }
 
     const {config} = this
-    commands = sortBy(commands, 'id').map((command) => {
+    commands = _.sortBy(commands, 'id').map((command) => {
       // Template supported fields.
       command.description =
-        (typeof command.description === 'string' && template(command.description)({command, config})) || undefined
+        (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined
       command.summary =
-        (typeof command.summary === 'string' && template(command.summary)({command, config})) || undefined
-      command.usage = (typeof command.usage === 'string' && template(command.usage)({command, config})) || undefined
+        (typeof command.summary === 'string' && _.template(command.summary)({command, config})) || undefined
+      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined
       command.id = toConfiguredId(command.id, config)
       return command
     })
@@ -63,7 +63,7 @@ export default class Commands extends Command {
             // Object.assign from overwriting the properties on the object, we need to filter out the undefined values.
             Object.assign(
               obj,
-              pickBy(commandClass, (v) => v !== undefined),
+              _.pickBy(commandClass, (v) => v !== undefined),
             )
           }
 
@@ -74,7 +74,7 @@ export default class Commands extends Command {
           return this.removeCycles(obj)
         }),
       )
-      return uniqBy(formatted, 'id')
+      return _.uniqBy(formatted, 'id')
     }
 
     if (flags.tree) {
