@@ -1,8 +1,5 @@
 import {Command, Flags, toConfiguredId, ux} from '@oclif/core'
-import pickBy from 'lodash.pickby'
-import sortBy from 'lodash.sortby'
-import template from 'lodash.template'
-import uniqBy from 'lodash.uniqby'
+import {pickBy, sortBy, template, uniqBy} from 'lodash'
 import {EOL} from 'node:os'
 
 import createCommandTree from '../utils/tree.js'
