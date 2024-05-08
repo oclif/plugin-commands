@@ -1,3 +1,9 @@
+## [3.3.3](https://github.com/oclif/plugin-commands/compare/3.3.2...3.3.3) (2024-05-08)
+
+### Bug Fixes
+
+- use lodash instead of lodash.template ([#662](https://github.com/oclif/plugin-commands/issues/662)) ([b5e772f](https://github.com/oclif/plugin-commands/commit/b5e772fe215be7da4919c7a7a42b2d9f9d721952))
+
 ## [3.3.2](https://github.com/oclif/plugin-commands/compare/3.3.1...3.3.2) (2024-05-04)
 
 ### Bug Fixes
