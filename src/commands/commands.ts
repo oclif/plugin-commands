@@ -1,25 +1,81 @@
-import {Command, Flags, toConfiguredId, ux} from '@oclif/core'
+import {Command, Flags, toConfiguredId} from '@oclif/core'
 import _ from 'lodash'
-import {EOL} from 'node:os'
-
-import createCommandTree from '../utils/tree.js'
+// @ts-expect-error because object-treeify does not have types: https://github.com/blackflux/object-treeify/issues/1077
+import treeify from 'object-treeify'
+import TtyTable from 'tty-table'
 
 type Dictionary = {[index: string]: object}
+
+const COLUMNS = ['id', 'plugin', 'summary', 'type'] as const
+type Column = (typeof COLUMNS)[number]
+
+interface RecursiveTree {
+  [key: string]: RecursiveTree | string
+}
+
+function createTree(commands: Command.Loadable[]): RecursiveTree {
+  const tree: RecursiveTree = {}
+  for (const command of commands) {
+    const parts = command.id.split(':')
+    let current = tree
+    for (const part of parts) {
+      current[part] = current[part] || {}
+      current = current[part] as RecursiveTree
+    }
+  }
+
+  return tree
+}
+
+function determineHeaders(columns: Column[] | undefined, extended: boolean | undefined): TtyTable.Header[] {
+  const columnConfigs = {
+    id: {align: 'left', value: 'ID', width: '25%'},
+    plugin: {align: 'left', value: 'Plugin'},
+    summary: {align: 'left', value: 'Summary', width: '75%'},
+    type: {align: 'left', value: 'Type'},
+  }
+
+  if (columns) {
+    return columns.map((column) => columnConfigs[column])
+  }
+
+  if (extended) {
+    return [columnConfigs.id, columnConfigs.summary, columnConfigs.plugin, columnConfigs.type]
+  }
+
+  return [columnConfigs.id, columnConfigs.summary]
+}
+
 export default class Commands extends Command {
-  static description = 'list all the commands'
+  static description = 'List all <%= config.bin %> commands.'
 
   static enableJsonFlag = true
 
   static flags = {
-    deprecated: Flags.boolean({description: 'show deprecated commands'}),
-    help: Flags.help({char: 'h'}),
-    hidden: Flags.boolean({description: 'show hidden commands'}),
-    tree: Flags.boolean({description: 'show tree of commands'}),
-    ...ux.table.flags(),
+    columns: Flags.custom<Column>({
+      char: 'c',
+      delimiter: ',',
+      description: 'Only show provided columns (comma-separated).',
+      exclusive: ['tree'],
+      multiple: true,
+      options: COLUMNS,
+    })(),
+    deprecated: Flags.boolean({description: 'Show deprecated commands.'}),
+    extended: Flags.boolean({char: 'x', description: 'Show extra columns.', exclusive: ['tree']}),
+    hidden: Flags.boolean({description: 'Show hidden commands.'}),
+    'no-truncate': Flags.boolean({description: 'Do not truncate output.', exclusive: ['tree']}),
+    sort: Flags.option({
+      default: 'id',
+      description: 'Property to sort by.',
+      exclusive: ['tree'],
+      options: COLUMNS,
+    })(),
+    tree: Flags.boolean({description: 'Show tree of commands.'}),
   }
 
   async run() {
     const {flags} = await this.parse(Commands)
+
     let commands = this.getCommands()
 
     if (!flags.hidden) {
@@ -32,19 +88,63 @@ export default class Commands extends Command {
     }
 
     const {config} = this
-    commands = _.sortBy(commands, 'id').map((command) => {
+    commands = _.sortBy(commands, flags.sort).map((command) =>
       // Template supported fields.
-      command.description =
-        (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined
-      command.summary =
-        (typeof command.summary === 'string' && _.template(command.summary)({command, config})) || undefined
-      command.usage = (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined
-      command.id = toConfiguredId(command.id, config)
-      return command
-    })
+      ({
+        ...command,
+        description:
+          (typeof command.description === 'string' && _.template(command.description)({command, config})) || undefined,
+        summary: (typeof command.summary === 'string' && _.template(command.summary)({command, config})) || undefined,
+        usage: (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined,
+      }),
+    )
 
-    if (this.jsonEnabled() && !flags.tree) {
-      const formatted = await Promise.all(
+    if (flags.tree) {
+      const tree = createTree(commands)
+      this.log(treeify(tree))
+    } else {
+      const headers = determineHeaders(flags.columns, flags.extended)
+      const extractData = (command: Command.Loadable) =>
+        headers.map((header) => {
+          switch (header.value) {
+            case 'ID': {
+              return toConfiguredId(command.id, config)
+            }
+
+            case 'Plugin': {
+              return command.pluginName
+            }
+
+            case 'Type': {
+              return command.pluginType
+            }
+
+            case 'Summary': {
+              return command.summary ?? command.description
+            }
+
+            default: {
+              throw new Error('Unknown column')
+            }
+          }
+        })
+
+      // eslint-disable-next-line new-cap
+      const table = TtyTable(
+        headers,
+        commands.map((c) => extractData(c)),
+        {
+          compact: true,
+          defaultValue: '',
+          truncate: flags['no-truncate'] ? undefined : '...',
+        },
+      )
+
+      this.log(table.render())
+    }
+
+    const json = _.uniqBy(
+      await Promise.all(
         commands.map(async (cmd) => {
           let commandClass: Command.Class | undefined
           try {
@@ -73,58 +173,11 @@ export default class Commands extends Command {
           // If Command classes have circular references, don't break the commands command.
           return this.removeCycles(obj)
         }),
-      )
-      return _.uniqBy(formatted, 'id')
-    }
-
-    if (flags.tree) {
-      const tree = createCommandTree(commands, config.topicSeparator)
-
-      if (!this.jsonEnabled()) {
-        tree.display()
-      }
-
-      return tree
-    }
-
-    ux.table(
-      commands.map((command) => {
-        // Massage some fields so it looks good in the table
-        command.description = (command.description ?? '').split(EOL)[0]
-        command.summary = command.summary ?? (command.description ?? '').split(EOL)[0]
-        command.hidden = Boolean(command.hidden)
-        command.usage ??= ''
-        return command
-      }),
-      {
-        description: {
-          extended: true,
-        },
-        hidden: {
-          extended: true,
-        },
-        id: {
-          header: 'Command',
-        },
-        pluginName: {
-          extended: true,
-          header: 'Plugin',
-        },
-        pluginType: {
-          extended: true,
-          header: 'Type',
-        },
-        summary: {},
-        usage: {
-          extended: true,
-        },
-      },
-      {
-        // to-do: investigate this oclif/core error when printLine is enabled
-        // printLine: this.log,
-        ...flags, // parsed flags
-      },
+      ),
+      'id',
     )
+
+    return json
   }
 
   private getCommands() {
