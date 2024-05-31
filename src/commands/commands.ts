@@ -3,9 +3,6 @@ import _ from 'lodash'
 // @ts-expect-error because object-treeify does not have types: https://github.com/blackflux/object-treeify/issues/1077
 import treeify from 'object-treeify'
 import TtyTable from 'tty-table'
-// import {EOL} from 'node:os'
-
-// import createCommandTree from '../utils/tree.js'
 
 type Dictionary = {[index: string]: object}
 
