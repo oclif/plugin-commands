@@ -6,6 +6,9 @@ import TtyTable from 'tty-table'
 
 type Dictionary = {[index: string]: object}
 
+const COLUMNS = ['id', 'plugin', 'summary', 'type'] as const
+type Column = (typeof COLUMNS)[number]
+
 interface RecursiveTree {
   [key: string]: RecursiveTree | string
 }
@@ -24,46 +27,23 @@ function createTree(commands: Command.Loadable[]): RecursiveTree {
   return tree
 }
 
-function determineHeaders(columns: string[] | undefined, extended: boolean | undefined): TtyTable.Header[] {
+function determineHeaders(columns: Column[] | undefined, extended: boolean | undefined): TtyTable.Header[] {
+  const columnConfigs = {
+    id: {align: 'left', value: 'ID', width: '25%'},
+    plugin: {align: 'left', value: 'Plugin'},
+    summary: {align: 'left', value: 'Summary', width: '75%'},
+    type: {align: 'left', value: 'Type'},
+  }
+
   if (columns) {
-    return columns.map((column) => {
-      switch (column) {
-        case 'id': {
-          return {align: 'left', value: 'ID'}
-        }
-
-        case 'plugin': {
-          return {align: 'left', value: 'Plugin'}
-        }
-
-        case 'type': {
-          return {align: 'left', value: 'Type'}
-        }
-
-        case 'summary': {
-          return {align: 'left', value: 'Summary'}
-        }
-
-        default: {
-          throw new Error('Unknown column')
-        }
-      }
-    })
+    return columns.map((column) => columnConfigs[column])
   }
 
   if (extended) {
-    return [
-      {align: 'left', value: 'ID'},
-      {align: 'left', value: 'Summary'},
-      {align: 'left', value: 'Plugin'},
-      {align: 'left', value: 'Type'},
-    ]
+    return [columnConfigs.id, columnConfigs.summary, columnConfigs.plugin, columnConfigs.type]
   }
 
-  return [
-    {align: 'left', value: 'ID'},
-    {align: 'left', value: 'Summary'},
-  ]
+  return [columnConfigs.id, columnConfigs.summary]
 }
 
 export default class Commands extends Command {
@@ -72,14 +52,14 @@ export default class Commands extends Command {
   static enableJsonFlag = true
 
   static flags = {
-    columns: Flags.string({
+    columns: Flags.custom<Column>({
       char: 'c',
       delimiter: ',',
       description: 'Only show provided columns (comma-separated).',
       exclusive: ['tree'],
       multiple: true,
-      options: ['id', 'plugin', 'type', 'summary'] as const,
-    }),
+      options: COLUMNS,
+    })(),
     deprecated: Flags.boolean({description: 'Show deprecated commands.'}),
     extended: Flags.boolean({char: 'x', description: 'Show extra columns.', exclusive: ['tree']}),
     hidden: Flags.boolean({description: 'Show hidden commands.'}),
@@ -88,7 +68,7 @@ export default class Commands extends Command {
       default: 'id',
       description: 'Property to sort by.',
       exclusive: ['tree'],
-      options: ['id', 'plugin', 'type'] as const,
+      options: COLUMNS,
     })(),
     tree: Flags.boolean({description: 'Show tree of commands.'}),
   }
