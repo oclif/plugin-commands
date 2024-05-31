@@ -79,14 +79,13 @@ describe('commands', () => {
 
   it('prints commands', async () => {
     const {stdout} = await runCommand(['commands'])
-    expect(stdout).to.equal(`
-  ┌──────────────────────────────────┬───────────────────────────────────────────────────────────────────────────────────────────────────┐
-  │                ID                │                                              Summary                                              │
-  ├──────────────────────────────────┼───────────────────────────────────────────────────────────────────────────────────────────────────┤
-  │ commands                         │ List all oclif-example commands.                                                                  │
-  │ help                             │ Display help for oclif-example.                                                                   │
-  └──────────────────────────────────┴───────────────────────────────────────────────────────────────────────────────────────────────────┘
-`)
+    // pro tip: don't assert the entire table output since the width of the table can differ between CI and local
+    expect(stdout).include('ID')
+    expect(stdout).include('Summary')
+    expect(stdout).include('commands')
+    expect(stdout).include('List all oclif-example commands.')
+    expect(stdout).include('help')
+    expect(stdout).include('Display help for oclif-example.')
   })
 
   it('runs commands --hidden', async () => {
