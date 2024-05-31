@@ -1,3 +1,19 @@
+# [4.0.0](https://github.com/oclif/plugin-commands/compare/3.3.4...4.0.0) (2024-05-31)
+
+- feat!: use oclif/core v4 (#675) ([2c181b1](https://github.com/oclif/plugin-commands/commit/2c181b139aab107af562293cd79e7e68a1fda8dc)), closes [#675](https://github.com/oclif/plugin-commands/issues/675)
+
+### BREAKING CHANGES
+
+- remove table-related flags and standardize return value
+
+- chore: code review
+
+- fix: dont truncate command ids
+
+- test: update expected table
+
+- test: consistent test between CI and local
+
 ## [3.3.4](https://github.com/oclif/plugin-commands/compare/3.3.3...3.3.4) (2024-05-11)
 
 ### Bug Fixes
