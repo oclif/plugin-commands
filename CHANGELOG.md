@@ -1,3 +1,9 @@
+## [4.0.1](https://github.com/oclif/plugin-commands/compare/4.0.0...4.0.1) (2024-06-03)
+
+### Bug Fixes
+
+- bump oclif/core ([feda9ea](https://github.com/oclif/plugin-commands/commit/feda9ea655931da4484fcbd40ba1e559fb692eda))
+
 # [4.0.0](https://github.com/oclif/plugin-commands/compare/3.3.4...4.0.0) (2024-05-31)
 
 - feat!: use oclif/core v4 (#675) ([2c181b1](https://github.com/oclif/plugin-commands/commit/2c181b139aab107af562293cd79e7e68a1fda8dc)), closes [#675](https://github.com/oclif/plugin-commands/issues/675)
