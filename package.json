@@ -8,8 +8,7 @@
     "@oclif/core": "^4",
     "@oclif/table": "^0.1.4",
     "lodash": "^4.17.21",
-    "object-treeify": "^4.0.1",
-    "tty-table": "^4.2.3"
+    "object-treeify": "^4.0.1"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19",
