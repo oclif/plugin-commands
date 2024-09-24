@@ -83,10 +83,10 @@ export default class Commands extends Command {
     if (flags.tree) {
       const tree = createTree(commands)
       this.log(treeify(tree))
-    } else {
+    } else if (!this.jsonEnabled()) {
       printTable({
         borderStyle: 'headers-only-with-underline',
-        columns: (flags.columns ?? ['id', 'plugin', ...(flags.extended ? ['summary', 'type'] : [])]) as Column[],
+        columns: (flags.columns ?? ['id', 'summary', ...(flags.extended ? ['plugin', 'type'] : [])]) as Column[],
         data: commands.map((c) => ({
           id: toConfiguredId(c.id, config),
           plugin: c.pluginName,

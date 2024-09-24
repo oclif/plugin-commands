@@ -80,7 +80,7 @@ describe('commands', () => {
   it('prints commands', async () => {
     const {stdout} = await runCommand(['commands'])
     // pro tip: don't assert the entire table output since the width of the table can differ between CI and local
-    expect(stdout).include('ID')
+    expect(stdout).include('Id')
     expect(stdout).include('Summary')
     expect(stdout).include('commands')
     expect(stdout).include('List all oclif-example commands.')
