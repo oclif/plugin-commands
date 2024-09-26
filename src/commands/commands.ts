@@ -46,6 +46,13 @@ function determineHeaders(columns: Column[] | undefined, extended: boolean | und
   return [columnConfigs.id, columnConfigs.summary]
 }
 
+// In order to collect static properties up the inheritance chain, we need to recursively access the prototypes until there's nothing left
+function mergePrototype(result: Command.Class, command: Command.Class): Command.Class {
+  const proto = Object.getPrototypeOf(command)
+  const filteredProto = _.pickBy(proto, (v) => v !== undefined) as Command.Class
+  return Object.keys(proto).length > 0 ? mergePrototype({...filteredProto, ...result} as Command.Class, proto) : result
+}
+
 export default class Commands extends Command {
   static description = 'List all <%= config.bin %> commands.'
 
@@ -146,26 +153,15 @@ export default class Commands extends Command {
     const json = _.uniqBy(
       await Promise.all(
         commands.map(async (cmd) => {
-          let commandClass: Command.Class | undefined
+          let commandClass: Command.Class
           try {
             commandClass = await cmd.load()
           } catch (error) {
             this.debug(error)
+            return cmd
           }
 
-          const obj = {...cmd, ...commandClass}
-
-          // Load all properties on all extending classes.
-          while (commandClass !== undefined) {
-            commandClass = Object.getPrototypeOf(commandClass) ?? undefined
-            // ES2022 will return all unset static properties on the prototype as undefined. This is different from ES2021
-            // which only returns the static properties that are set by defaults. In order to prevent
-            // Object.assign from overwriting the properties on the object, we need to filter out the undefined values.
-            Object.assign(
-              obj,
-              _.pickBy(commandClass, (v) => v !== undefined),
-            )
-          }
+          const obj = {...mergePrototype(commandClass, commandClass), ...cmd}
 
           // The plugin property on the loaded class contains a LOT of information including all the commands again. Remove it.
           delete obj.plugin
