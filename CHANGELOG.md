@@ -1,3 +1,9 @@
+## [4.1.1](https://github.com/oclif/plugin-commands/compare/4.1.0...4.1.1) (2024-10-04)
+
+### Bug Fixes
+
+- bump table ([#772](https://github.com/oclif/plugin-commands/issues/772)) ([24ac4ca](https://github.com/oclif/plugin-commands/commit/24ac4ca90f5e8fdf4dba58eee84ae32dc9d6a2e7))
+
 # [4.1.0](https://github.com/oclif/plugin-commands/compare/4.0.17...4.1.0) (2024-10-04)
 
 ### Features
