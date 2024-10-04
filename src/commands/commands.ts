@@ -1,8 +1,8 @@
 import {Command, Flags, toConfiguredId} from '@oclif/core'
+import {printTable} from '@oclif/table'
 import _ from 'lodash'
 // @ts-expect-error because object-treeify does not have types: https://github.com/blackflux/object-treeify/issues/1077
 import treeify from 'object-treeify'
-import TtyTable from 'tty-table'
 
 type Dictionary = {[index: string]: object}
 
@@ -27,26 +27,6 @@ function createTree(commands: Command.Loadable[]): RecursiveTree {
   return tree
 }
 
-function determineHeaders(columns: Column[] | undefined, extended: boolean | undefined): TtyTable.Header[] {
-  const columnConfigs = {
-    id: {align: 'left', value: 'ID', width: '25%'},
-    plugin: {align: 'left', value: 'Plugin'},
-    summary: {align: 'left', value: 'Summary', width: '75%'},
-    type: {align: 'left', value: 'Type'},
-  }
-
-  if (columns) {
-    return columns.map((column) => columnConfigs[column])
-  }
-
-  if (extended) {
-    return [columnConfigs.id, columnConfigs.summary, columnConfigs.plugin, columnConfigs.type]
-  }
-
-  return [columnConfigs.id, columnConfigs.summary]
-}
-
-// In order to collect static properties up the inheritance chain, we need to recursively access the prototypes until there's nothing left
 function mergePrototype(result: Command.Class, command: Command.Class): Command.Class {
   const proto = Object.getPrototypeOf(command)
   const filteredProto = _.pickBy(proto, (v) => v !== undefined) as Command.Class
@@ -109,45 +89,22 @@ export default class Commands extends Command {
     if (flags.tree) {
       const tree = createTree(commands)
       this.log(treeify(tree))
-    } else {
-      const headers = determineHeaders(flags.columns, flags.extended)
-      const extractData = (command: Command.Loadable) =>
-        headers.map((header) => {
-          switch (header.value) {
-            case 'ID': {
-              return toConfiguredId(command.id, config)
-            }
-
-            case 'Plugin': {
-              return command.pluginName
-            }
-
-            case 'Type': {
-              return command.pluginType
-            }
-
-            case 'Summary': {
-              return command.summary ?? command.description
-            }
-
-            default: {
-              throw new Error('Unknown column')
-            }
-          }
-        })
-
-      // eslint-disable-next-line new-cap
-      const table = TtyTable(
-        headers,
-        commands.map((c) => extractData(c)),
-        {
-          compact: true,
-          defaultValue: '',
-          truncate: flags['no-truncate'] ? undefined : '...',
+    } else if (!this.jsonEnabled()) {
+      printTable({
+        borderStyle: 'vertical-with-outline',
+        columns: (flags.columns ?? ['id', 'summary', ...(flags.extended ? ['plugin', 'type'] : [])]) as Column[],
+        data: commands.map((c) => ({
+          id: toConfiguredId(c.id, config),
+          plugin: c.pluginName,
+          summary: c.summary ?? c.description,
+          type: c.pluginType,
+        })),
+        headerOptions: {
+          formatter: 'capitalCase',
         },
-      )
-
-      this.log(table.render())
+        overflow: flags['no-truncate'] ? 'wrap' : 'truncate',
+        sort: {[flags.sort]: 'asc'},
+      })
     }
 
     const json = _.uniqBy(
