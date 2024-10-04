@@ -1,4 +1,4 @@
-import {Command} from '@oclif/core'
+import {Args, Command} from '@oclif/core'
 import {runCommand} from '@oclif/test'
 import {expect} from 'chai'
 import sinon from 'sinon'
@@ -16,8 +16,13 @@ obj.circular = obj
 
 class AnotherTestCommand extends TestCommand {
   public static anotherCustomProperty = [5, obj]
+  public static args = {
+    arg1: Args.string(),
+  }
 
   public static circularObj = obj
+
+  public static enableJsonFlag = true
 
   public async run() {
     // Do nothing
@@ -104,6 +109,8 @@ describe('commands', () => {
     expect(commands[0].testCustomProperty).to.equal('test')
     expect(commands[0].anotherCustomProperty[0]).to.equal(5)
     expect(commands[0].anotherCustomProperty[1]).to.deep.equal({foo: 'bar'})
+    expect(commands[0].args).to.have.property('arg1')
+    expect(commands[0].enableJsonFlag).to.be.true
     expect(commands[0]).to.not.have.property('circularObj')
     expect(commands[1].id).to.equal('topic:subtopic:command')
     expect(commands[1].testCustomProperty).to.equal('test')

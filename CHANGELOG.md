@@ -1,3 +1,15 @@
+## [4.0.17](https://github.com/oclif/plugin-commands/compare/4.0.16...4.0.17) (2024-10-04)
+
+### Bug Fixes
+
+- correctly merge command class prototypes ([#765](https://github.com/oclif/plugin-commands/issues/765)) ([9fdb463](https://github.com/oclif/plugin-commands/commit/9fdb4637ead68df14517cd56a2d55676eccb08bd))
+
+## [4.0.16](https://github.com/oclif/plugin-commands/compare/4.0.15...4.0.16) (2024-09-28)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 4.0.21 to 4.0.23 ([#769](https://github.com/oclif/plugin-commands/issues/769)) ([5adca4d](https://github.com/oclif/plugin-commands/commit/5adca4dd24a2f981674123a6ec980bcb963a26a0))
+
 ## [4.0.15](https://github.com/oclif/plugin-commands/compare/4.0.14...4.0.15) (2024-09-13)
 
 ### Bug Fixes
