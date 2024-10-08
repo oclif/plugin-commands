@@ -64,7 +64,7 @@ export default class Commands extends Command {
     const {flags} = await this.parse(Commands)
 
     let commands = this.getCommands()
-
+    console.error('commands before', commands)
     if (!flags.hidden) {
       commands = commands.filter((c) => !c.hidden)
     }
@@ -85,11 +85,20 @@ export default class Commands extends Command {
         usage: (typeof command.usage === 'string' && _.template(command.usage)({command, config})) || undefined,
       }),
     )
-
+    console.error('commands after', commands)
     if (flags.tree) {
       const tree = createTree(commands)
       this.log(treeify(tree))
     } else if (!this.jsonEnabled()) {
+      console.error(
+        'commands for table',
+        commands.map((c) => ({
+          id: toConfiguredId(c.id, config),
+          plugin: c.pluginName,
+          summary: c.summary ?? c.description,
+          type: c.pluginType,
+        })),
+      )
       printTable({
         borderStyle: 'vertical-with-outline',
         columns: (flags.columns ?? ['id', 'summary', ...(flags.extended ? ['plugin', 'type'] : [])]) as Column[],

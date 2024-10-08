@@ -83,7 +83,8 @@ describe('commands', () => {
   })
 
   it('prints commands', async () => {
-    const {stdout} = await runCommand(['commands'])
+    const {stderr, stdout} = await runCommand(['commands'])
+    console.log(stderr)
     // pro tip: don't assert the entire table output since the width of the table can differ between CI and local
     expect(stdout).include('Id')
     expect(stdout).include('Summary')
