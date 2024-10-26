@@ -1,3 +1,9 @@
+## [4.1.4](https://github.com/oclif/plugin-commands/compare/4.1.3...4.1.4) (2024-10-26)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 4.0.29 to 4.0.30 ([#793](https://github.com/oclif/plugin-commands/issues/793)) ([902f3ab](https://github.com/oclif/plugin-commands/commit/902f3ab81af1d2a5330473af623943190b8af14a))
+
 ## [4.1.3](https://github.com/oclif/plugin-commands/compare/4.1.2...4.1.3) (2024-10-08)
 
 ### Bug Fixes
