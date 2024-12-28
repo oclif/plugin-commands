@@ -1,3 +1,9 @@
+## [4.1.15](https://github.com/oclif/plugin-commands/compare/4.1.14...4.1.15) (2024-12-28)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/table from 0.3.7 to 0.3.9 ([#831](https://github.com/oclif/plugin-commands/issues/831)) ([4d6f015](https://github.com/oclif/plugin-commands/commit/4d6f0150f1359f1fa2d38f38d6f6bffbbf6989d7))
+
 ## [4.1.14](https://github.com/oclif/plugin-commands/compare/4.1.13...4.1.14) (2024-12-15)
 
 ### Bug Fixes
