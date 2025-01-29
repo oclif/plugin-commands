@@ -35,9 +35,7 @@ function mergePrototype(result: Command.Class, command: Command.Class): Command.
 
 export default class Commands extends Command {
   static description = 'List all <%= config.bin %> commands.'
-
   static enableJsonFlag = true
-
   static flags = {
     columns: Flags.custom<Column>({
       char: 'c',
