@@ -19,9 +19,7 @@ class AnotherTestCommand extends TestCommand {
   public static args = {
     arg1: Args.string(),
   }
-
   public static circularObj = obj
-
   public static enableJsonFlag = true
 
   public async run() {
