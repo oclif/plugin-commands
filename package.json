@@ -17,7 +17,7 @@
     "@oclif/prettier-config": "^0.2.1",
     "@oclif/test": "^4.1.8",
     "@types/chai": "^4.3.17",
-    "@types/lodash": "^4.17.14",
+    "@types/lodash": "^4.17.15",
     "@types/mocha": "^10.0.9",
     "@types/node": "^18",
     "@types/sinon": "^17.0.3",
