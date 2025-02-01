@@ -23,7 +23,7 @@ $ npm install -g @oclif/plugin-commands
 $ oclif-example COMMAND
 running command...
 $ oclif-example (--version)
-@oclif/plugin-commands/4.1.18 linux-x64 node-v20.18.1
+@oclif/plugin-commands/4.1.19 linux-x64 node-v20.18.2
 $ oclif-example --help [COMMAND]
 USAGE
   $ oclif-example COMMAND
@@ -65,7 +65,7 @@ DESCRIPTION
   List all oclif-example commands.
 ```
 
-_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/4.1.18/src/commands/commands.ts)_
+_See code: [src/commands/commands.ts](https://github.com/oclif/plugin-commands/blob/4.1.19/src/commands/commands.ts)_
 
 <!-- commandsstop -->
 
