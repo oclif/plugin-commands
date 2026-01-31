@@ -6,7 +6,7 @@
   "bugs": "https://github.com/oclif/plugin-commands/issues",
   "dependencies": {
     "@oclif/core": "^4",
-    "@oclif/table": "^0.5.1",
+    "@oclif/table": "^0.5.2",
     "lodash": "^4.17.23",
     "object-treeify": "^4.0.1"
   },
