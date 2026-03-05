@@ -28,7 +28,7 @@
     "eslint-config-prettier": "^10.1.8",
     "husky": "^9.1.7",
     "lint-staged": "^15",
-    "mocha": "^10.8.2",
+    "mocha": "^11",
     "nyc": "^15.1.0",
     "oclif": "^4.22.79",
     "prettier": "^3.8.1",
