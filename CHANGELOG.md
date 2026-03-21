@@ -1,3 +1,9 @@
+## [4.1.42](https://github.com/oclif/plugin-commands/compare/4.1.41...4.1.42) (2026-03-21)
+
+### Bug Fixes
+
+- **deps:** bump flatted from 3.3.2 to 3.4.2 ([#1083](https://github.com/oclif/plugin-commands/issues/1083)) ([77ddb7a](https://github.com/oclif/plugin-commands/commit/77ddb7a292c7723b4fe88338d1a4b3477e872250))
+
 ## [4.1.41](https://github.com/oclif/plugin-commands/compare/4.1.40...4.1.41) (2026-03-21)
 
 ### Bug Fixes
