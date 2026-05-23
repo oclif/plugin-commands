@@ -1,3 +1,9 @@
+## [4.1.55](https://github.com/oclif/plugin-commands/compare/4.1.54...4.1.55) (2026-05-23)
+
+### Bug Fixes
+
+- **deps:** bump ws from 8.18.0 to 8.21.0 ([#1126](https://github.com/oclif/plugin-commands/issues/1126)) ([3a9181b](https://github.com/oclif/plugin-commands/commit/3a9181b3e0fd161e9d9e003f19fc0511854282c9))
+
 ## [4.1.54](https://github.com/oclif/plugin-commands/compare/4.1.53...4.1.54) (2026-05-16)
 
 ### Bug Fixes
