@@ -1,3 +1,9 @@
+## [4.1.58](https://github.com/oclif/plugin-commands/compare/4.1.57...4.1.58) (2026-06-20)
+
+### Bug Fixes
+
+- **deps:** bump @babel/core from 7.10.4 to 7.29.7 ([#1140](https://github.com/oclif/plugin-commands/issues/1140)) ([55a77cd](https://github.com/oclif/plugin-commands/commit/55a77cd6c5977978416007a609291974a86249f7))
+
 ## [4.1.57](https://github.com/oclif/plugin-commands/compare/4.1.56...4.1.57) (2026-05-30)
 
 ### Bug Fixes
