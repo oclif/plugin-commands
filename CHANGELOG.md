@@ -1,3 +1,9 @@
+## [4.1.61](https://github.com/oclif/plugin-commands/compare/4.1.60...4.1.61) (2026-07-25)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 4.11.14 to 4.13.0 ([#1159](https://github.com/oclif/plugin-commands/issues/1159)) ([f20466f](https://github.com/oclif/plugin-commands/commit/f20466f8549413d241d51013f13a2972b426bea3))
+
 ## [4.1.60](https://github.com/oclif/plugin-commands/compare/4.1.59...4.1.60) (2026-07-04)
 
 ### Bug Fixes
