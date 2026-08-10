@@ -1,0 +1,38 @@
+{
+  "eslint.config.js": {
+    "import-x/no-anonymous-default-export": {
+      "count": 1
+    }
+  },
+  "src/commands/commands.ts": {
+    "@typescript-eslint/no-dynamic-delete": {
+      "count": 1
+    },
+    "@typescript-eslint/no-for-in-array": {
+      "count": 1
+    },
+    "@typescript-eslint/no-unsafe-argument": {
+      "count": 3
+    },
+    "@typescript-eslint/no-unsafe-assignment": {
+      "count": 1
+    },
+    "@typescript-eslint/no-unsafe-call": {
+      "count": 1
+    },
+    "unicorn/consistent-class-member-order": {
+      "count": 1
+    },
+    "unicorn/logical-assignment-operators": {
+      "count": 1
+    }
+  },
+  "test/commands/commands.test.ts": {
+    "@typescript-eslint/no-unsafe-assignment": {
+      "count": 1
+    },
+    "@typescript-eslint/no-unsafe-member-access": {
+      "count": 10
+    }
+  }
+}
