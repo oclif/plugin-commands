@@ -4,12 +4,12 @@ import _ from 'lodash'
 // @ts-expect-error because object-treeify does not have types: https://github.com/blackflux/object-treeify/issues/1077
 import treeify from 'object-treeify'
 
-type Dictionary = {[index: string]: object}
+type Dictionary = Record<string, Record<string, unknown>>
 
 const COLUMNS = ['id', 'plugin', 'summary', 'type'] as const
 type Column = (typeof COLUMNS)[number]
 
-interface RecursiveTree {
+type RecursiveTree = {
   [key: string]: RecursiveTree | string
 }
 

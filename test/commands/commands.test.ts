@@ -9,7 +9,7 @@ abstract class TestCommand extends Command {
   public static testCustomProperty = 'test'
 }
 
-const obj: {[index: string]: unknown} = {
+const obj: Record<string, unknown> = {
   foo: 'bar',
 }
 obj.circular = obj
@@ -19,6 +19,7 @@ class AnotherTestCommand extends TestCommand {
   public static args = {
     arg1: Args.string(),
   }
+
   public static circularObj = obj
   public static enableJsonFlag = true
 
