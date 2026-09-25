@@ -1,3 +1,9 @@
+## [5.0.1](https://github.com/oclif/plugin-commands/compare/5.0.0...5.0.1) (2026-09-25)
+
+### Bug Fixes
+
+- **deps:** bump browserslist from 4.28.2 to 4.29.1 ([#1183](https://github.com/oclif/plugin-commands/issues/1183)) ([fd0e49c](https://github.com/oclif/plugin-commands/commit/fd0e49c50d1391e067a2bacab13d17c99f197f41))
+
 # [5.0.0](https://github.com/oclif/plugin-commands/compare/4.2.0...5.0.0) (2026-08-31)
 
 - feat!: upgrade oclif/core to v5 @W-23512455@ (#1180) ([1bd98e4](https://github.com/oclif/plugin-commands/commit/1bd98e4b0beb92a4d45c5c7100b7abbc65a608a2)), closes [#1180](https://github.com/oclif/plugin-commands/issues/1180)
