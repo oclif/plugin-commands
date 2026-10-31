@@ -1,3 +1,9 @@
+## [5.0.8](https://github.com/oclif/plugin-commands/compare/5.0.7...5.0.8) (2026-10-31)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/table from 1.0.6 to 1.0.8 ([#1198](https://github.com/oclif/plugin-commands/issues/1198)) ([a9465f4](https://github.com/oclif/plugin-commands/commit/a9465f46ee9991b06ef7b49303cb2a749984e715))
+
 ## [5.0.7](https://github.com/oclif/plugin-commands/compare/5.0.6...5.0.7) (2026-10-31)
 
 ### Bug Fixes
