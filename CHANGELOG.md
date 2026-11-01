@@ -1,3 +1,9 @@
+## [5.0.9](https://github.com/oclif/plugin-commands/compare/5.0.8...5.0.9) (2026-11-01)
+
+### Bug Fixes
+
+- **deps:** bump js-yaml from 3.14.1 to 3.15.2 ([#1201](https://github.com/oclif/plugin-commands/issues/1201)) ([4d28d6f](https://github.com/oclif/plugin-commands/commit/4d28d6ffb8d408a73a3b91c8a96c8c141a28be0c))
+
 ## [5.0.8](https://github.com/oclif/plugin-commands/compare/5.0.7...5.0.8) (2026-10-31)
 
 ### Bug Fixes
