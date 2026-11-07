@@ -1,3 +1,9 @@
+## [5.0.10](https://github.com/oclif/plugin-commands/compare/5.0.9...5.0.10) (2026-11-07)
+
+### Bug Fixes
+
+- **deps:** bump brace-expansion from 1.1.11 to 1.1.21 ([#1205](https://github.com/oclif/plugin-commands/issues/1205)) ([78b2915](https://github.com/oclif/plugin-commands/commit/78b2915ca9bd76eefe2de93b747f92261c026d74))
+
 ## [5.0.9](https://github.com/oclif/plugin-commands/compare/5.0.8...5.0.9) (2026-11-01)
 
 ### Bug Fixes
