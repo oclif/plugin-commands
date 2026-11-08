@@ -1,3 +1,9 @@
+## [5.0.12](https://github.com/oclif/plugin-commands/compare/5.0.11...5.0.12) (2026-11-08)
+
+### Bug Fixes
+
+- **deps:** bump @oclif/core from 5.1.9 to 5.1.11 ([#1202](https://github.com/oclif/plugin-commands/issues/1202)) ([eec6dcb](https://github.com/oclif/plugin-commands/commit/eec6dcbab8effea6cbeeae8a13b19ca2b67f17a9))
+
 ## [5.0.11](https://github.com/oclif/plugin-commands/compare/5.0.10...5.0.11) (2026-11-07)
 
 ### Bug Fixes
